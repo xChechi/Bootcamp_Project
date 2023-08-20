@@ -1,4 +1,4 @@
-package chechi.nino.bootcamp.entity.annotation;
+package chechi.nino.bootcamp.annotation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
