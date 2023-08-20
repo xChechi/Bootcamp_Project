@@ -1,5 +1,6 @@
 package chechi.nino.bootcamp.entity.user;
 
+import chechi.nino.bootcamp.entity.annotation.PasswordValidation;
 import chechi.nino.bootcamp.entity.reservation.BarReservation;
 import chechi.nino.bootcamp.entity.reservation.CarReservation;
 import chechi.nino.bootcamp.entity.reservation.RoomReservation;
@@ -57,6 +58,7 @@ public class User {
     private Role role;
 
     @JsonIgnore
+    @PasswordValidation
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
