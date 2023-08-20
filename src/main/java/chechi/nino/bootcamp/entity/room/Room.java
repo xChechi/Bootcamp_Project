@@ -1,5 +1,7 @@
 package chechi.nino.bootcamp.entity.room;
 
+import chechi.nino.bootcamp.entity.reservation.RoomReservation;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -40,4 +42,8 @@ public class Room {
     @CollectionTable(name = "room_facilities", joinColumns = @JoinColumn(name = "room_id"))
     @Column(name = "facility_type")
     private List<FacilityType> facilityTypeList;
+
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
+    private List<RoomReservation> roomReservationList;
 }
