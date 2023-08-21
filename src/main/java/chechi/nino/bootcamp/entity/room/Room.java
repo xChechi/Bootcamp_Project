@@ -26,6 +26,7 @@ public class Room {
     private Integer id;
 
     @NotBlank
+    @Column(name = "room_number", nullable = false)
     private String roomNumber;
 
     @Enumerated(EnumType.STRING)
@@ -35,6 +36,7 @@ public class Room {
     private RoomView roomView;
 
     @NotNull
+    @Column(name = "room_price", nullable = false)
     private Double roomPrice;
 
     @ElementCollection(targetClass = FacilityType.class)

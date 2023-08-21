@@ -2,11 +2,11 @@ server:
   port: 3000
 
 spring:
+  config:
+    import: classpath:email-credentials.yml
   mail:
     host: smtp.abv.bg
     port: 465
-    username: ${EMAIL_USERNAME}
-    password: ${EMAIL_PASSWORD}
     properties:
       mail:
         smtp:

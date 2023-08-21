@@ -38,16 +38,16 @@ public class User {
 
     @NotBlank
     @Length(min = 2)
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
     @NotBlank
     @Length(min = 2)
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
     @Email
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
     @PhoneNumberValidation
