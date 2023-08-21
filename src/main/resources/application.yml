@@ -2,6 +2,17 @@ server:
   port: 3000
 
 spring:
+  mail:
+    host: smtp.abv.bg
+    port: 465
+    username: ${EMAIL_USERNAME}
+    password: ${EMAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl.enable: true
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: ccdccd
