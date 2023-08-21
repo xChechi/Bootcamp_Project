@@ -1,6 +1,7 @@
 package chechi.nino.bootcamp.entity.user;
 
 import chechi.nino.bootcamp.annotation.PasswordValidation;
+import chechi.nino.bootcamp.annotation.PhoneNumberValidation;
 import chechi.nino.bootcamp.entity.reservation.BarReservation;
 import chechi.nino.bootcamp.entity.reservation.CarReservation;
 import chechi.nino.bootcamp.entity.reservation.RoomReservation;
@@ -33,7 +34,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private int id;
+    private Integer id;
 
     @NotBlank
     @Length(min = 2)
@@ -49,8 +50,7 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    @NotBlank
-    @Length(max = 15)
+    @PhoneNumberValidation
     @Column(name = "phone_number")
     private String phoneNumber;
 

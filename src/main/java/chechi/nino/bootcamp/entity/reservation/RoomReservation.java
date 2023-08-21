@@ -25,7 +25,7 @@ public class RoomReservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "room_reservation_id")
-    private int id;
+    private Integer id;
 
     @Future
     @NotNull
@@ -38,11 +38,11 @@ public class RoomReservation {
     private LocalDate checkOut;
 
     @NotNull
-    private int guests;
+    private Integer guests;
 
     @NotNull
     @Column(name = "total_charge")
-    private double totalCharge;
+    private Double totalCharge;
 
     @Enumerated(EnumType.STRING)
     private BedType bedType;
