@@ -84,17 +84,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void resetPasswordByEmail(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
 
-        User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));
+        String newPassword = PasswordUtils.generateRandomPassword();
+        user.setPassword(newPassword);
+        userRepository.save(user);
 
-        if (user != null) {
-            String newPassword = PasswordUtils.generateRandomPassword();
-            user.setPassword(newPassword);
-            userRepository.save(user);
-
-            EmailUtils.sendPasswordEmail(user.getEmail(), newPassword);
-        }
+        EmailUtils emailUtils = new EmailUtils();
+        emailUtils.sendPasswordEmail(user.getEmail(), newPassword);
     }
+
 
     @Override
     public UserResponse findUserByEmail(String email) {
