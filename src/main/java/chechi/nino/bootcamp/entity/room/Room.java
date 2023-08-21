@@ -23,7 +23,7 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "room_id")
-    private int id;
+    private Integer id;
 
     @NotBlank
     private String roomNumber;
@@ -35,7 +35,7 @@ public class Room {
     private RoomView roomView;
 
     @NotNull
-    private double roomPrice;
+    private Double roomPrice;
 
     @ElementCollection(targetClass = FacilityType.class)
     @Enumerated(EnumType.STRING)

@@ -10,12 +10,12 @@ import java.util.List;
 @Getter
 public enum RoomType {
 
-    STUDIO(2, "24m²", Arrays.asList(
+    STANDARD(2, "24m²", Arrays.asList(
             FacilityType.HAIR_DRYER,
             FacilityType.TV,
             FacilityType.WIFI,
             FacilityType.MINIBAR)),
-    APARTMENT(3, "34m²", Arrays.asList(
+    STUDIO(3, "34m²", Arrays.asList(
             FacilityType.HAIR_DRYER,
             FacilityType.COFFEE_MACHINE,
             FacilityType.TV,
@@ -23,7 +23,7 @@ public enum RoomType {
             FacilityType.MINIBAR,
             FacilityType.IRON
     )),
-    STANDARD(4, "56m²", Arrays.asList(
+    APARTMENT(4, "56m²", Arrays.asList(
             FacilityType.HAIR_DRYER,
             FacilityType.COFFEE_MACHINE,
             FacilityType.TV,
