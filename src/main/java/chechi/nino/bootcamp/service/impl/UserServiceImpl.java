@@ -10,6 +10,8 @@ import chechi.nino.bootcamp.exception.DuplicateEmailException;
 import chechi.nino.bootcamp.exception.UserNotFoundException;
 import chechi.nino.bootcamp.repository.UserRepository;
 import chechi.nino.bootcamp.service.UserService;
+import chechi.nino.bootcamp.util.EmailUtils;
+import chechi.nino.bootcamp.util.PasswordUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -78,5 +80,26 @@ public class UserServiceImpl implements UserService {
 
         User savedUser = userRepository.save(user);
         return userConverter.toUserResponse(savedUser);
+    }
+
+    @Override
+    public void resetPasswordByEmail(String email) {
+
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));
+
+        if (user != null) {
+            String newPassword = PasswordUtils.generateRandomPassword();
+            user.setPassword(newPassword);
+            userRepository.save(user);
+
+            EmailUtils.sendPasswordEmail(user.getEmail(), newPassword);
+        }
+    }
+
+    @Override
+    public UserResponse findUserByEmail(String email) {
+
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));
+        return userConverter.toUserResponse(user);
     }
 }

@@ -24,4 +24,8 @@ public interface UserService {
 
     UserResponse updateUserPassword (Integer id, UserUpdatePasswordRequest request);
 
+    void resetPasswordByEmail(String email);
+
+    UserResponse findUserByEmail (String email);
+
 }
