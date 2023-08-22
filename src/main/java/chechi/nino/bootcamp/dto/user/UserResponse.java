@@ -1,6 +1,9 @@
 package chechi.nino.bootcamp.dto.user;
 
+import chechi.nino.bootcamp.entity.reservation.RoomReservation;
 import lombok.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,4 +21,7 @@ public class UserResponse {
     private String email;
 
     private String phoneNumber;
+
+
+
 }

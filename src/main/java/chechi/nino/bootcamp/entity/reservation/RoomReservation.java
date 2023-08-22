@@ -55,13 +55,13 @@ public class RoomReservation {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    @JsonManagedReference
+    //@JsonManagedReference <---------- Broke the server
     @JsonIgnoreProperties("hibernateLazyInitializer")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
-    @JsonManagedReference
+    //@JsonManagedReference
     @JsonIgnoreProperties("hibernateLazyInitializer")
     private Room room;
 }

@@ -1,4 +1,4 @@
-package chechi.nino.bootcamp.comtroller;
+package chechi.nino.bootcamp.controller;
 
 import chechi.nino.bootcamp.dto.user.UserRequest;
 import chechi.nino.bootcamp.dto.user.UserResponse;
@@ -7,9 +7,7 @@ import chechi.nino.bootcamp.dto.user.UserUpdateRequest;
 import chechi.nino.bootcamp.entity.user.User;
 import chechi.nino.bootcamp.service.UserService;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
