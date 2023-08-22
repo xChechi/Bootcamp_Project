@@ -21,4 +21,10 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(message.getMessage(), HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(RoomNotFoundException.class)
+    public ResponseEntity<String> handlerRoomNotFound (RoomNotFoundException message) {
+
+        return new ResponseEntity<>(message.getMessage(), HttpStatus.NOT_FOUND);
+    }
 }

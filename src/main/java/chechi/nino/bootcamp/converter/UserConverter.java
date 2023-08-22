@@ -17,7 +17,6 @@ public class UserConverter {
                 .email(request.getEmail())
                 .phoneNumber(request.getPhoneNumber())
                 .password(request.getPassword())
-                .role(Role.USER)
                 .build();
     }
 

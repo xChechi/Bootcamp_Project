@@ -7,6 +7,7 @@ import chechi.nino.bootcamp.dto.user.UserUpdateRequest;
 import chechi.nino.bootcamp.entity.user.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
@@ -26,6 +27,8 @@ public interface UserService {
 
     void resetPasswordByEmail(String email);
 
-    UserResponse findUserByEmail (String email);
+    //UserResponse findUserByEmail (String email);
+
+   // UserResponse findByEmail (String email);
 
 }

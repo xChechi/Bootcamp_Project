@@ -1,17 +1,16 @@
 package chechi.nino.bootcamp.dto.user;
 
+import chechi.nino.bootcamp.annotation.PasswordValidation;
 import chechi.nino.bootcamp.entity.reservation.RoomReservation;
 import chechi.nino.bootcamp.entity.user.Role;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class UserRequest {
 
@@ -25,6 +24,7 @@ public class UserRequest {
 
     private Role role;
 
+    @PasswordValidation
     private String password;
 
     private List<RoomReservation> roomReservationList;

@@ -5,6 +5,7 @@ import chechi.nino.bootcamp.dto.user.UserRequest;
 import chechi.nino.bootcamp.dto.user.UserResponse;
 import chechi.nino.bootcamp.dto.user.UserUpdatePasswordRequest;
 import chechi.nino.bootcamp.dto.user.UserUpdateRequest;
+import chechi.nino.bootcamp.entity.user.Role;
 import chechi.nino.bootcamp.entity.user.User;
 import chechi.nino.bootcamp.exception.DuplicateEmailException;
 import chechi.nino.bootcamp.exception.UserNotFoundException;
@@ -15,7 +16,9 @@ import chechi.nino.bootcamp.util.PasswordUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -23,6 +26,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserConverter userConverter;
+    private final EmailUtils emailUtils;
 
     @Override
     public List<User> findAllUsers() {
@@ -37,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean existByEmail(String email) {
-        return userRepository.existByEmail(email);
+        return userRepository.existsByEmail(email);
     }
 
     @Override
@@ -53,6 +57,8 @@ public class UserServiceImpl implements UserService {
         }
 
         User user = userConverter.createUser(request);
+        user.setRole(Role.USER);
+
         User savedUser = userRepository.save(user);
         return userConverter.toUserResponse(savedUser);
     }
@@ -84,6 +90,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void resetPasswordByEmail(String email) {
+
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
 
@@ -91,15 +98,18 @@ public class UserServiceImpl implements UserService {
         user.setPassword(newPassword);
         userRepository.save(user);
 
-        EmailUtils emailUtils = new EmailUtils();
+        //EmailUtils emailUtils = new EmailUtils();
         emailUtils.sendPasswordEmail(user.getEmail(), newPassword);
     }
 
-
+    /*
     @Override
-    public UserResponse findUserByEmail(String email) {
+    public UserResponse findByEmail (String email) {
 
         User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));
         return userConverter.toUserResponse(user);
     }
+
+     */
+
 }

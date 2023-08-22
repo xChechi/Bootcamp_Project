@@ -1,13 +1,14 @@
 package chechi.nino.bootcamp.dto.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import chechi.nino.bootcamp.entity.reservation.RoomReservation;
+import lombok.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class UserResponse {
 
@@ -20,4 +21,7 @@ public class UserResponse {
     private String email;
 
     private String phoneNumber;
+
+
+
 }
