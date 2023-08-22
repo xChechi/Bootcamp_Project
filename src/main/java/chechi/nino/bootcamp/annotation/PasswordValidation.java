@@ -10,8 +10,8 @@ import java.lang.annotation.*;
 @Documented
 @Constraint(validatedBy = {})
 @Pattern.List({
-        @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,30}$",
-                message = " Should be between 8 and 30 chars with at least 1 lowercase, 1 uppercase, 1 special char, 1 digit and no whitespace"),
+        @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!#%*?&])[A-Za-z\\d@$!#%*?&]{8,30}$",
+                message = "Should be between 8 and 30 chars with at least 1 lowercase, 1 uppercase, 1 special char, 1 digit and no whitespace"),
         @Pattern(regexp = "\\S+",
                 message = "Password must not contain whitespaces")
 })

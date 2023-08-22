@@ -5,6 +5,7 @@ import chechi.nino.bootcamp.dto.user.UserRequest;
 import chechi.nino.bootcamp.dto.user.UserResponse;
 import chechi.nino.bootcamp.dto.user.UserUpdatePasswordRequest;
 import chechi.nino.bootcamp.dto.user.UserUpdateRequest;
+import chechi.nino.bootcamp.entity.user.Role;
 import chechi.nino.bootcamp.entity.user.User;
 import chechi.nino.bootcamp.exception.DuplicateEmailException;
 import chechi.nino.bootcamp.exception.UserNotFoundException;
@@ -37,7 +38,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean existByEmail(String email) {
-        return userRepository.existByEmail(email);
+        return userRepository.existsByEmail(email);
     }
 
     @Override
@@ -53,6 +54,7 @@ public class UserServiceImpl implements UserService {
         }
 
         User user = userConverter.createUser(request);
+        user.setRole(Role.USER);
         User savedUser = userRepository.save(user);
         return userConverter.toUserResponse(savedUser);
     }
@@ -84,6 +86,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void resetPasswordByEmail(String email) {
+
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
 
@@ -102,4 +105,5 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));
         return userConverter.toUserResponse(user);
     }
+
 }
