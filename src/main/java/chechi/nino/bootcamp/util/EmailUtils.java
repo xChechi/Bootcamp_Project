@@ -52,8 +52,8 @@ public class EmailUtils {
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.abv.bg");
-        props.put("mail.smtp.port", "465");
+        props.put("mail.smtp.host", "sandbox.smtp.mailtrap.io");
+        props.put("mail.smtp.port", "2525");
 
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
@@ -62,11 +62,25 @@ public class EmailUtils {
             }
         });
 
+        String htmlContent = "<html><head>"
+                + "<style>"
+                + "body { background-color: #ffffff; }"
+                + ".header { font-size: 24px; color: #a35e00; font-weight: bold; }"
+                + ".content { font-size: 16px; color: #a35e00; }"
+                + "</style>"
+                + "</head><body>"
+                + "<div class=\"header\">Moonlight Hotel</div>"
+                + "<div class=\"content\">Here is your new generated password to log in your account:</div>"
+                + "<div class=\"password\">" + newPassword + "</div>"
+                + "</body></html>";
+
         try {
             Message message = new MimeMessage(session);
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
             message.setSubject("Password Reset");
-            message.setText("Your new password: " + newPassword);
+
+            //message.setText("Your new password: " + newPassword);
+            message.setContent(htmlContent, "text/html; charset=utf-8");
 
             Transport.send(message);
         } catch (MessagingException e) {
