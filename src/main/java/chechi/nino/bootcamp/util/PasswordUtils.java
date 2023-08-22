@@ -15,7 +15,7 @@ public class PasswordUtils {
     private static final String ALL_CHARS = LOWERCASE + UPPERCASE + DIGITS + SPECIAL_CHARS;
 
     private static final int MIN_LENGTH = 8;
-    private static final int MAX_LENGTH = 30;
+    private static final int MAX_LENGTH = 12;
 
     private static final Random random = new SecureRandom();
 
