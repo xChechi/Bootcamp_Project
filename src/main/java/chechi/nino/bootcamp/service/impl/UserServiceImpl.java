@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -25,6 +26,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserConverter userConverter;
+    private final EmailUtils emailUtils;
 
     @Override
     public List<User> findAllUsers() {
@@ -96,16 +98,18 @@ public class UserServiceImpl implements UserService {
         user.setPassword(newPassword);
         userRepository.save(user);
 
-        EmailUtils emailUtils = new EmailUtils();
+        //EmailUtils emailUtils = new EmailUtils();
         emailUtils.sendPasswordEmail(user.getEmail(), newPassword);
     }
 
-
+    /*
     @Override
-    public UserResponse findUserByEmail(String email) {
+    public UserResponse findByEmail (String email) {
 
         User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));
         return userConverter.toUserResponse(user);
     }
+
+     */
 
 }
