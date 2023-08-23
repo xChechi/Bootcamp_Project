@@ -1,5 +1,7 @@
 package chechi.nino.bootcamp.dto.reservation_room;
 
+import chechi.nino.bootcamp.dto.room.RoomResponse;
+import chechi.nino.bootcamp.dto.user.UserResponse;
 import chechi.nino.bootcamp.entity.reservation.BedType;
 import chechi.nino.bootcamp.entity.room.Room;
 import chechi.nino.bootcamp.entity.user.User;
@@ -18,10 +20,10 @@ public class RoomReservationResponse {
     private Integer id;
 
     @NotNull
-    private User user;
+    private UserResponse user;
 
     @NotNull
-    private Room room;
+    private RoomResponse room;
 
     @NotNull
     private LocalDate startDate;
