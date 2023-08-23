@@ -16,7 +16,7 @@ public class UserConverter {
                 .lastName(request.getLastName())
                 .email(request.getEmail())
                 .phoneNumber(request.getPhoneNumber())
-                .password(request.getPassword())
+                .password(request.getPassword()) // <-------- Don`t forget to encrypt when security is implemented
                 .build();
     }
 

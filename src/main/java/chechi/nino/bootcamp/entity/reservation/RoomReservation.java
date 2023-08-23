@@ -2,6 +2,7 @@ package chechi.nino.bootcamp.entity.reservation;
 
 import chechi.nino.bootcamp.entity.room.Room;
 import chechi.nino.bootcamp.entity.user.User;
+import chechi.nino.bootcamp.repository.Reservation;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -20,7 +21,7 @@ import java.time.LocalDate;
 @Data
 @Builder
 @Table(name = "room_reservations")
-public class RoomReservation {
+public class RoomReservation implements Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,12 +31,12 @@ public class RoomReservation {
     @Future
     @NotNull
     @Column(name = "check_in")
-    private LocalDate checkIn;
+    private LocalDate startDate;
 
     @Future
     @NotNull
     @Column(name = "check_out")
-    private LocalDate checkOut;
+    private LocalDate endDate;
 
     @NotNull
     private Integer guests;
@@ -64,4 +65,5 @@ public class RoomReservation {
     //@JsonManagedReference
     @JsonIgnoreProperties("hibernateLazyInitializer")
     private Room room;
+
 }
