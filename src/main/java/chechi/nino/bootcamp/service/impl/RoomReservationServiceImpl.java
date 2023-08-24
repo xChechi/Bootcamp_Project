@@ -56,7 +56,15 @@ public class RoomReservationServiceImpl implements RoomReservationService {
         RoomReservation roomReservation = roomReservationConverter.bookReservation(userId, request);
         RoomReservation savedReservation = roomReservationRepository.save(roomReservation);
 
+        int guests = roomReservation.getGuests();
+        int capacity = roomReservation.getRoom().getRoomType().getRoomCapacity();
+
+        if (guests > capacity) {
+            throw new IllegalArgumentException("Number of guests exceeds room capacity");
+        }
+
         return roomReservationConverter.toRoomReservationResponse(savedReservation);
+
     }
 
     @Override
