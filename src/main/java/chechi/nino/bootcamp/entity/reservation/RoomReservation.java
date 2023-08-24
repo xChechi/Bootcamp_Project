@@ -4,7 +4,6 @@ import chechi.nino.bootcamp.entity.room.Room;
 import chechi.nino.bootcamp.entity.user.User;
 import chechi.nino.bootcamp.repository.Reservation;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;

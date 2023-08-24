@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public interface UserService {
 
-    List<User> findAllUsers ();
+    List<UserResponse> findAllUsers ();
 
     UserResponse findUserById (Integer id);
 

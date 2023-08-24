@@ -7,7 +7,6 @@ import chechi.nino.bootcamp.entity.reservation.RoomReservation;
 import chechi.nino.bootcamp.entity.user.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.List;

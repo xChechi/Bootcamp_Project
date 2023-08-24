@@ -29,8 +29,16 @@ public class UserServiceImpl implements UserService {
     private final EmailUtils emailUtils;
 
     @Override
-    public List<User> findAllUsers() {
-        return userRepository.findAll();
+    public List<UserResponse> findAllUsers() {
+
+        List<User> users = userRepository.findAll();
+        List<UserResponse> responses = new ArrayList<>();
+
+        for (User u : users) {
+            UserResponse response = userConverter.toUserResponse(u);
+            responses.add(response);
+        }
+        return responses;
     }
 
     @Override
