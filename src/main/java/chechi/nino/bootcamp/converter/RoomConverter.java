@@ -15,6 +15,7 @@ public class RoomConverter {
         response.setRoomType(room.getRoomType());
         response.setRoomView(room.getRoomView());
         response.setRoomPrice(room.getRoomPrice());
+        //response.setFacilities(room.getFacilityTypeList());
 
         RoomType roomType = room.getRoomType();
         response.setRoomSize(roomType.getRoomSize());

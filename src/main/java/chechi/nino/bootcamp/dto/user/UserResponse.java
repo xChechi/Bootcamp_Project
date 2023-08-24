@@ -1,5 +1,6 @@
 package chechi.nino.bootcamp.dto.user;
 
+import chechi.nino.bootcamp.annotation.ValidReservationList;
 import chechi.nino.bootcamp.entity.reservation.RoomReservation;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

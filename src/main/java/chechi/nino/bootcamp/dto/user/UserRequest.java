@@ -32,7 +32,6 @@ public class UserRequest {
     @PhoneNumberValidation
     private String phoneNumber;
 
-    @NotNull
     private Role role;
 
     @PasswordValidation

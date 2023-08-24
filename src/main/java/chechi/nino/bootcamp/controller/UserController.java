@@ -1,10 +1,12 @@
 package chechi.nino.bootcamp.controller;
 
+import chechi.nino.bootcamp.dto.reservation_room.RoomReservationResponse;
 import chechi.nino.bootcamp.dto.user.UserRequest;
 import chechi.nino.bootcamp.dto.user.UserResponse;
 import chechi.nino.bootcamp.dto.user.UserUpdatePasswordRequest;
 import chechi.nino.bootcamp.dto.user.UserUpdateRequest;
 import chechi.nino.bootcamp.entity.user.User;
+import chechi.nino.bootcamp.service.RoomReservationService;
 import chechi.nino.bootcamp.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,7 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final RoomReservationService roomReservationService;
 
     @GetMapping
     //@PreAuthorize("hasRole('ADMIN')")
@@ -76,5 +79,16 @@ public class UserController {
         userService.resetPasswordByEmail(email);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
+
+    @GetMapping("/{userId}/reservations")
+    public ResponseEntity<List<RoomReservationResponse>> getUserReservations(@PathVariable Integer userId) {
+        List<RoomReservationResponse> reservations = roomReservationService.searchByUser(userId);
+        if (reservations.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(reservations);
+        }
+    }
+
 
 }
