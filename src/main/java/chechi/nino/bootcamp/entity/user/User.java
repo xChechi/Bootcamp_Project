@@ -1,13 +1,9 @@
 package chechi.nino.bootcamp.entity.user;
 
-import chechi.nino.bootcamp.annotation.PasswordValidation;
 import chechi.nino.bootcamp.annotation.PhoneNumberValidation;
-import chechi.nino.bootcamp.entity.reservation.BarReservation;
-import chechi.nino.bootcamp.entity.reservation.CarReservation;
-import chechi.nino.bootcamp.entity.reservation.RoomReservation;
-import chechi.nino.bootcamp.entity.reservation.TableReservation;
+import chechi.nino.bootcamp.entity.reservation.*;
+import chechi.nino.bootcamp.repository.Reservation;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -17,6 +13,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -63,6 +60,8 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonBackReference
     private List<RoomReservation> roomReservationList;
+
+
     /*
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonBackReference
