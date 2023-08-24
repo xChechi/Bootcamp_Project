@@ -28,8 +28,8 @@ public class RoomReservationRequest {
     @NotNull
     private Integer guests;
 
-    @NotNull
-    private Double totalCharge;
+    //@NotNull
+    //private Double totalCharge;
 
     private BedType bedType;
 

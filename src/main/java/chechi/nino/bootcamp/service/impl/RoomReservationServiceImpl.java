@@ -66,6 +66,10 @@ public class RoomReservationServiceImpl implements RoomReservationService {
         Room room = roomRepository.findById(request.getRoomId()).orElseThrow(() -> new RoomNotFoundException("Room not found"));
 
         roomReservation.setRoom(room);
+
+        Double newTotalCharge = roomReservationConverter.calculateTotalCharge(roomReservation.getStartDate(), roomReservation.getEndDate(), room.getRoomPrice());
+        roomReservation.setTotalCharge(newTotalCharge);
+
         RoomReservation savedReservation = roomReservationRepository.save(roomReservation);
 
         return roomReservationConverter.toRoomReservationResponse(savedReservation);
@@ -78,6 +82,7 @@ public class RoomReservationServiceImpl implements RoomReservationService {
 
         roomReservation.setStartDate(request.getStartDate());
         roomReservation.setEndDate(request.getEndDate());
+
         RoomReservation savedReservation = roomReservationRepository.save(roomReservation);
 
         return roomReservationConverter.toRoomReservationResponse(savedReservation);

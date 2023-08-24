@@ -30,6 +30,7 @@ public class RoomReservationConverter {
         User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("User not found"));
         Room room = roomRepository.findById(request.getRoomId()).orElseThrow(() -> new RoomNotFoundException("Room not found"));
 
+        System.out.println(room.getRoomPrice());
         int requestedGuests = request.getGuests();
         int roomCapacity = room.getRoomType().getRoomCapacity();
 
@@ -48,7 +49,7 @@ public class RoomReservationConverter {
                 .build();
     }
 
-    private Double calculateTotalCharge(LocalDate startDate, LocalDate endDate, Double roomPrice) {
+    public Double calculateTotalCharge(LocalDate startDate, LocalDate endDate, Double roomPrice) {
         long numOfDays = ChronoUnit.DAYS.between(startDate, endDate);
         return roomPrice * numOfDays;
     }
