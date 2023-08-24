@@ -79,6 +79,10 @@ public class RoomReservationServiceImpl implements RoomReservationService {
     public RoomReservationResponse updatePeriod(Integer id, RoomReservationPeriodUpdateRequest request) {
 
         RoomReservation roomReservation = roomReservationRepository.findById(id).orElseThrow(() -> new ReservationNotFoundException("Reservation not found"));
+        Room room = roomRepository.findById(roomReservation.getRoom().getId()).orElseThrow(() -> new RoomNotFoundException("Room not found"));
+
+        Double newTotalCharge = roomReservationConverter.calculateTotalCharge(request.getStartDate(), request.getEndDate(), room.getRoomPrice());
+        roomReservation.setTotalCharge(newTotalCharge);
 
         roomReservation.setStartDate(request.getStartDate());
         roomReservation.setEndDate(request.getEndDate());
