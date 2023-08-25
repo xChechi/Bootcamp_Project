@@ -23,12 +23,12 @@ public class RoomController {
     private final RoomService roomService;
 
     @GetMapping
-    public List<RoomResponse> getAllRooms() {
-        return roomService.getAllRoomResponses();
+    public ResponseEntity<List<RoomResponse>> getAllRooms() {
+        return ResponseEntity.status(HttpStatus.FOUND).body(roomService.getAllRoomResponses());
     }
 
     @GetMapping("/{id}")
-    public RoomResponse getRoomById(@PathVariable Integer id) {
-        return roomService.getRoomResponseById(id);
+    public ResponseEntity<RoomResponse> getRoomById(@PathVariable Integer id) {
+        return ResponseEntity.status(HttpStatus.FOUND).body(roomService.getRoomResponseById(id));
     }
 }

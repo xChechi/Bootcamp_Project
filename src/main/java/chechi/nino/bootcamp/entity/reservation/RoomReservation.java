@@ -55,7 +55,6 @@ public class RoomReservation implements Reservation {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    //@JsonManagedReference <---------- Broke the server
     @JsonIgnoreProperties("hibernateLazyInitializer")
     private User user;
 

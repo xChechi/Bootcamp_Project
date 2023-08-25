@@ -62,11 +62,11 @@ public class User {
     private List<RoomReservation> roomReservationList;
 
 
-    /*
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonBackReference
     private List<TableReservation> tableReservationList;
-
+/*
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonBackReference
     private List<BarReservation> barReservationList;
