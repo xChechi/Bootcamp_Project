@@ -48,6 +48,9 @@ public class TableReservation implements Reservation {
     @NotNull
     private Integer guests;
 
+    @NotNull
+    private Double totalCharge;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "payment_status")
     private PaymentStatus paymentStatus;
