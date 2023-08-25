@@ -40,6 +40,7 @@ public class TableReservation implements Reservation {
     private LocalDate endDate;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "table_zone")
     private TableZone tableZone;
 
     private boolean isSmoke;
@@ -48,9 +49,11 @@ public class TableReservation implements Reservation {
     private Integer guests;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "payment_status")
     private PaymentStatus paymentStatus;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "payment_type")
     private PaymentType paymentType;
 
     @ManyToOne(fetch = FetchType.LAZY)
