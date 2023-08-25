@@ -24,6 +24,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+    scan:
+      packages: chechi.nino.bootcamp.entity
     show-sql: true
     properties:
       hibernate:

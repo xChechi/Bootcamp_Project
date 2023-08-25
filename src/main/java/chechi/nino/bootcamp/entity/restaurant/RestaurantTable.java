@@ -22,7 +22,7 @@ public class RestaurantTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "table_id")
+    @Column(name = "restaurant_table_id")
     private Integer id;
 
     @NotBlank
@@ -35,4 +35,5 @@ public class RestaurantTable {
     @OneToMany(mappedBy = "table", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonBackReference
     private List<TableReservation> tableReservationList;
+
 }

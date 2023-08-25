@@ -58,14 +58,16 @@ public class TableReservation implements Reservation {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    @JsonManagedReference
+    //@JsonManagedReference
     @JsonIgnoreProperties("hibernateLazyInitializer")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "table_id")
-    @JsonManagedReference
+    @JoinColumn(name = "restaurant_table_id")
+    //@JsonManagedReference
     @JsonIgnoreProperties("hibernateLazyInitializer")
     private RestaurantTable table;
+
+
 
 }
