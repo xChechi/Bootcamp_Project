@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 import java.util.List;
 
 @Documented
-@Constraint(validatedBy = {ValidReservationList.ReservationListValidator.class})
+//@Constraint(validatedBy = {ValidReservationList.ReservationListValidator.class})
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ValidReservationList {
@@ -19,7 +19,7 @@ public @interface ValidReservationList {
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
-
+/*
     class ReservationListValidator implements ConstraintValidator<ValidReservationList, List<? extends Reservation>> {
 
         @Override
@@ -47,6 +47,10 @@ public @interface ValidReservationList {
                     reservation.getEndDate() != null &&
                     reservation.getStartDate().isBefore(reservation.getEndDate());
         }
+
+
     }
+
+ */
 }
 

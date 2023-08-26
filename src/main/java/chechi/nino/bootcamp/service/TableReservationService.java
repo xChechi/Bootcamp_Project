@@ -1,25 +1,25 @@
 package chechi.nino.bootcamp.service;
 
+import chechi.nino.bootcamp.dto.reservation_room.RoomReservationRequest;
+import chechi.nino.bootcamp.dto.reservation_room.RoomReservationResponse;
+import chechi.nino.bootcamp.dto.reservation_room.RoomReservationRoomUpdateRequest;
 import chechi.nino.bootcamp.dto.reservation_table.RestaurantTableReservationRequest;
+import chechi.nino.bootcamp.dto.reservation_table.RestaurantTableReservationResponse;
 import chechi.nino.bootcamp.entity.room.RestaurantTable;
 
 import java.util.List;
 
 public interface TableReservationService {
 
-    //List<RestaurantTable> getAvailableTablesWithCapacity(int numberOfGuests);
-
     List<RestaurantTable> findAvailableTablesWithClosestCapacity(int numberOfGuests);
-}
 /*
-@Service
-public class TableReservationService {
+    List<RestaurantTableReservationResponse> getAllReservations();
 
-    @Autowired
-    private TableRepository tableRepository;
+    RestaurantTableReservationResponse findReservationById (Integer id);
 
-    public List<RestaurantTable> getAvailableTablesWithCapacity(int numberOfGuests) {
-        return tableRepository.findAvailableTablesWithCapacity(numberOfGuests);
-    }
-}
+    RestaurantTableReservationResponse bookReservation (Integer userId, RestaurantTableReservationRequest request);
+
+    RestaurantTableReservationResponse updateTable (Integer id, RestaurantTableReservationUpdateTable request);
+
  */
+}
