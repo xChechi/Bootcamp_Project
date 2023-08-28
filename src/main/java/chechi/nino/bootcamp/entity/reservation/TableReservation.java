@@ -15,6 +15,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @AllArgsConstructor
@@ -31,13 +32,12 @@ public class TableReservation implements Reservation {
 
     @Future
     @NotNull
-    @Column(name = "check_in")
-    private LocalDate startDate;
+    @Column(name = "reservation_date")
+    private LocalDate reservationDate;
 
-    @Future
     @NotNull
-    @Column(name = "check_out")
-    private LocalDate endDate;
+    @Column(name = "reservation_time")
+    private LocalTime reservationTime;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "table_zone")

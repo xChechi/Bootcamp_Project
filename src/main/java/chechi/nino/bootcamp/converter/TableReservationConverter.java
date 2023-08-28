@@ -1,6 +1,7 @@
 package chechi.nino.bootcamp.converter;
 
-import chechi.nino.bootcamp.dto.reservation_table.RestaurantTableReservationRequest;
+import chechi.nino.bootcamp.dto.reservation_table.TableReservationRequest;
+import chechi.nino.bootcamp.dto.reservation_table.TableReservationResponse;
 import chechi.nino.bootcamp.entity.reservation.TableReservation;
 import chechi.nino.bootcamp.entity.room.RestaurantTable;
 import chechi.nino.bootcamp.entity.user.User;
@@ -12,9 +13,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -27,7 +26,7 @@ public class TableReservationConverter {
 
 
 
-    public TableReservation bookReservation (Integer userId, RestaurantTableReservationRequest request) {
+    public TableReservation bookReservation (Integer userId, TableReservationRequest request) {
 
         User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("User not found"));
         RestaurantTable table = tableRepository.findById(request.getTableId()).orElseThrow(() -> new TableNotFoundException("Table not found"));
@@ -42,8 +41,8 @@ public class TableReservationConverter {
         return TableReservation.builder()
                 .user(user)
                 .table(table)
-                .startDate(request.getStartDate())
-                .endDate(request.getEndDate())
+                .reservationDate(request.getReservationDate())
+                .reservationTime(request.getReservationTime())
                 .tableZone(request.getTableZone())
                 .isSmoke(request.isSmoke())
                 .totalCharge(calculatedCharge(request.getTableZone().getTableCapacity()))
@@ -51,7 +50,7 @@ public class TableReservationConverter {
                 .build();
     }
 
-    private Double calculatedCharge(int tableCapacity) {
+    public Double calculatedCharge(int tableCapacity) {
         return tableCapacity * 10.00;
     }
 
@@ -73,6 +72,20 @@ public class TableReservationConverter {
         }
 
         return closestCapacityTables;
+    }
+
+    public TableReservationResponse toTableReservationResponse (TableReservation tableReservation) {
+
+        return TableReservationResponse.builder()
+                .id(tableReservation.getId())
+                .user(userConverter.toUserResponse(tableReservation.getUser()))
+                .table(tableConverter.totableResponse(tableReservation.getTable()))
+                .reservationDate(tableReservation.getReservationDate())
+                .reservationTime(tableReservation.getReservationTime())
+                .tableZone(tableReservation.getTableZone())
+                .isSmoke(tableReservation.isSmoke())
+                .guests(tableReservation.getGuests())
+                .build();
     }
 
 }
