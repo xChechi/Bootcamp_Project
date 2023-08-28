@@ -1,33 +1,26 @@
 package chechi.nino.bootcamp.dto.reservation_table;
 
-import chechi.nino.bootcamp.dto.table.TableResponse;
-import chechi.nino.bootcamp.dto.user.UserResponse;
 import chechi.nino.bootcamp.entity.restaurant.TableZone;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
 @Setter
-public class RestaurantTableReservationResponse {
+public class TableReservationRequest {
 
-    private Integer id;
-
-    @NotNull
-    private UserResponse userResponse;
+    private Integer tableId;
 
     @NotNull
-    private TableResponse tableResponse;
+    private LocalDate reservationDate;
 
     @NotNull
-    private LocalDate startDate;
-
-    @NotNull
-    private LocalDate endDate;
+    private LocalTime reservationTime;
 
     private TableZone tableZone;
 

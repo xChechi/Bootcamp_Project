@@ -39,4 +39,10 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(message.getMessage(), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(TableReservationNotFoundException.class)
+    public ResponseEntity<String> handlerTableReservationNotFound (TableReservationNotFoundException message) {
+
+        return new ResponseEntity<>(message.getMessage(), HttpStatus.NOT_FOUND);
+    }
 }
