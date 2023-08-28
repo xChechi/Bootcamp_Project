@@ -66,6 +66,13 @@ public class TableReservationServiceImpl implements TableReservationService {
             throw new IllegalArgumentException("Number of guests exceeds room capacity");
         }
 
+        boolean reservationIsSmoke = reservation.isSmoke();
+        boolean tableIsSmoke = request.getTableZone().isSmoke();
+
+        if (reservationIsSmoke != tableIsSmoke) {
+            throw new IllegalArgumentException("Requested table not met reservation smoking requirement");
+        }
+
         return tableReservationConverter.toTableReservationResponse(savedReservation);
     }
 
@@ -80,6 +87,20 @@ public class TableReservationServiceImpl implements TableReservationService {
 
         Double newCalculatedCharge = tableReservationConverter.calculatedCharge(reservation.getTableZone().getTableCapacity());
         reservation.setTotalCharge(newCalculatedCharge);
+
+        int guests = reservation.getGuests();
+        int tableCapacity = table.getTableZone().getTableCapacity();
+
+        if (guests > tableCapacity) {
+            throw new IllegalArgumentException("Number of guests exceeds room capacity");
+        }
+
+        boolean reservationIsSmoke = reservation.isSmoke();
+        boolean tableIsSmoke = table.getTableZone().isSmoke();
+
+        if (reservationIsSmoke != tableIsSmoke) {
+            throw new IllegalArgumentException("Requested table not met reservation smoking requirement");
+        }
 
         TableReservation savedReservation = tableReservationRepository.save(reservation);
 

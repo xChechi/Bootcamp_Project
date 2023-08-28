@@ -42,9 +42,14 @@ public class TableReservationController {
     //@PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<TableReservationResponse>> getAllReservations() {
 
-        List<TableReservationResponse> reservations = tableReservationService.getAllReservations();
+        List<TableReservationResponse> responses = tableReservationService.getAllReservations();
 
-        return ResponseEntity.status(HttpStatus.FOUND).body(reservations);
+        if (responses.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.FOUND).body(responses);
+        }
+
     }
 
     @GetMapping("/{id}")
@@ -56,19 +61,43 @@ public class TableReservationController {
     }
 
     @PostMapping("/{userId}")
-    public ResponseEntity<TableReservationResponse> bookReservation(@PathVariable Integer userId, @Valid @RequestBody TableReservationRequest request) {
+    public ResponseEntity<?> bookReservation(@PathVariable Integer userId, @Valid @RequestBody TableReservationRequest request) {
+        try {
+            TableReservationResponse response = tableReservationService.bookReservation(userId, request);
 
-        TableReservationResponse response = tableReservationService.bookReservation(userId, request);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        } catch (IllegalArgumentException e) {
+            if (e.getMessage().equals("Number of guests exceeds room capacity")) {
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+                return ResponseEntity.badRequest().body("Number of guests exceeds room capacity");
+            } else if (e.getMessage().equals("Requested table not met reservation smoking requirement")) {
+
+                return ResponseEntity.badRequest().body("Requested table not met reservation smoking requirement");
+            } else {
+
+                return ResponseEntity.badRequest().body("Invalid reservation request");
+            }
+        }
     }
 
     @PutMapping("/{id}/update-table")
-    public ResponseEntity<TableReservationResponse> updateTable(@PathVariable Integer id, @Valid @RequestBody TableReservationUpdateTableRequest request) {
+    public ResponseEntity<?> updateTable(@PathVariable Integer id, @Valid @RequestBody TableReservationUpdateTableRequest request) {
+        try {
+            TableReservationResponse response = tableReservationService.updateTable(id, request);
 
-        TableReservationResponse response = tableReservationService.updateTable(id, request);
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } catch (IllegalArgumentException e) {
+            if (e.getMessage().equals("Number of guests exceeds room capacity")) {
 
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+                return ResponseEntity.badRequest().body("Number of guests exceeds room capacity");
+            } else if (e.getMessage().equals("Requested table not met reservation smoking requirement")) {
+
+                return ResponseEntity.badRequest().body("Requested table not met reservation smoking requirement");
+            } else {
+
+                return ResponseEntity.badRequest().body("Invalid reservation request");
+            }
+        }
     }
 
     @PutMapping("/{id}/update-time")
