@@ -30,3 +30,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+image:
+  upload:
+    directory: images

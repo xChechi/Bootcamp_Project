@@ -18,6 +18,8 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String imagePath;
+
     @Lob
     @Column(name = "image_data", columnDefinition = "BLOB")
     private byte[] imageData;
