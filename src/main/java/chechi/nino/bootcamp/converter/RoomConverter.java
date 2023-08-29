@@ -9,7 +9,9 @@ import org.springframework.stereotype.Component;
 public class RoomConverter {
 
     public RoomResponse toRoomResponse (Room room) {
+
         RoomResponse response = new RoomResponse();
+
         response.setId(room.getId());
         response.setRoomNumber(room.getRoomNumber());
         response.setRoomType(room.getRoomType());
