@@ -1,6 +1,9 @@
 package chechi.nino.bootcamp.service.impl;
 
+import chechi.nino.bootcamp.converter.CarConverter;
 import chechi.nino.bootcamp.dto.car.CarResponse;
+import chechi.nino.bootcamp.entity.car.Car;
+import chechi.nino.bootcamp.exception.CarNotFoundException;
 import chechi.nino.bootcamp.repository.CarRepository;
 import chechi.nino.bootcamp.service.CarService;
 import lombok.AllArgsConstructor;
@@ -13,14 +16,22 @@ import java.util.List;
 public class CarServiceImpl implements CarService {
 
     private final CarRepository carRepository;
+    private final CarConverter carConverter;
 
     @Override
     public List<CarResponse> getAllCars() {
-        return null;
+
+        List<Car> cars = carRepository.findAll();
+        return cars.stream()
+                .map(carConverter::toCarResponse)
+                .toList();
     }
 
     @Override
     public CarResponse getCarById(Integer id) {
-        return null;
+
+        Car car = carRepository.findById(id).orElseThrow(() -> new CarNotFoundException("Car not found"));
+
+        return carConverter.toCarResponse(car);
     }
 }
