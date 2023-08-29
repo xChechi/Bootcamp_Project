@@ -3,7 +3,10 @@ package chechi.nino.bootcamp.converter;
 import chechi.nino.bootcamp.dto.car.CarResponse;
 import chechi.nino.bootcamp.entity.car.Car;
 import chechi.nino.bootcamp.entity.car.CarType;
+import chechi.nino.bootcamp.entity.car.Image;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class CarConverter {

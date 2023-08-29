@@ -70,8 +70,7 @@ public class User {
     private List<BarReservation> barReservationList;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonBackReference
+    //@JsonBackReference
     private List<CarReservation> carReservationList;
-
-     */
+*/
 }
