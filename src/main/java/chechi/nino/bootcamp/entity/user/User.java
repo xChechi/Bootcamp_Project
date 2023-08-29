@@ -1,5 +1,6 @@
 package chechi.nino.bootcamp.entity.user;
 
+import chechi.nino.bootcamp.annotation.PasswordValidation;
 import chechi.nino.bootcamp.annotation.PhoneNumberValidation;
 import chechi.nino.bootcamp.entity.reservation.*;
 import chechi.nino.bootcamp.repository.Reservation;
@@ -54,17 +55,14 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-
+    @PasswordValidation
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonBackReference
     private List<RoomReservation> roomReservationList;
 
-
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    //@JsonBackReference
     private List<TableReservation> tableReservationList;
 /*
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -72,8 +70,7 @@ public class User {
     private List<BarReservation> barReservationList;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonBackReference
+    //@JsonBackReference
     private List<CarReservation> carReservationList;
-
-     */
+*/
 }

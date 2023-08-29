@@ -30,3 +30,8 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+image:
+  upload:
+    directory: src/main/resources/images
+    #directory: file:project/images/sport/ferrari/
