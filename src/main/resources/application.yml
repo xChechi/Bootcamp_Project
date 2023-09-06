@@ -34,4 +34,3 @@ spring:
 image:
   upload:
     directory: src/main/resources/images
-    #directory: file:project/images/sport/ferrari/
