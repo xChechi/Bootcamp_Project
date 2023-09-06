@@ -45,6 +45,9 @@ public class CarReservation {
     @Column(name = "reservation_date")
     private LocalDate reservationDate;
 
+    @NotNull
+    private Double dailyCharge;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "payment_type")
     private PaymentType paymentType;
