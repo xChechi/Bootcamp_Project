@@ -19,7 +19,7 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String imagePath;
+    private String imagePath; //rename to imageName
 
     @Lob
     @Column(name = "image_data", columnDefinition = "LONGBLOB")
