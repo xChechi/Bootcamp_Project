@@ -12,7 +12,6 @@ import chechi.nino.bootcamp.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import javax.swing.undo.CannotRedoException;
 
 @Component
 @AllArgsConstructor
