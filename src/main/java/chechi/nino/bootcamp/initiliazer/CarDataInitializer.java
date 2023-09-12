@@ -70,9 +70,6 @@ public class CarDataInitializer implements CommandLineRunner {
         car1.getImages().add(image2);
         car1.getImages().add(image3);
 
-
-
-
         Car car2 = Car.builder()
                 .model("Lamborghini Urus")
                 .year("2020")
