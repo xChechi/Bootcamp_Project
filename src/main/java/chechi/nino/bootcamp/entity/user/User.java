@@ -2,6 +2,7 @@ package chechi.nino.bootcamp.entity.user;
 
 import chechi.nino.bootcamp.annotation.PasswordValidation;
 import chechi.nino.bootcamp.annotation.PhoneNumberValidation;
+import chechi.nino.bootcamp.entity.contact.ContactUsForm;
 import chechi.nino.bootcamp.entity.reservation.*;
 import chechi.nino.bootcamp.repository.Reservation;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -68,9 +69,10 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonBackReference
     private List<BarReservation> barReservationList;
-
+*/
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     //@JsonBackReference
     private List<CarReservation> carReservationList;
-*/
+
+
 }

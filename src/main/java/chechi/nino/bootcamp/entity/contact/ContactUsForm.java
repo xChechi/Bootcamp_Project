@@ -1,6 +1,7 @@
 package chechi.nino.bootcamp.entity.contact;
 
 import chechi.nino.bootcamp.annotation.PhoneNumberValidation;
+import chechi.nino.bootcamp.entity.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -16,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @Table(name = "contact_us")
-public class ContactUs {
+public class ContactUsForm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,4 +43,5 @@ public class ContactUs {
     @NotBlank
     @Size(max = 650)
     private String message;
+
 }
