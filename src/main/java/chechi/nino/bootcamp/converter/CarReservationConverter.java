@@ -41,6 +41,7 @@ public class CarReservationConverter {
     public CarReservationResponse toCarReservationResponse (CarReservation carReservation) {
 
         return CarReservationResponse.builder()
+                .id(carReservation.getId())
                 .user(userConverter.toUserResponse(carReservation.getUser()))
                 .car(carConverter.toCarResponse(carReservation.getCar()))
                 .passengers(carReservation.getPassengers())
