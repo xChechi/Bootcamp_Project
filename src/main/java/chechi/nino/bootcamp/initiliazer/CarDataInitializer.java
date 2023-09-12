@@ -71,7 +71,7 @@ public class CarDataInitializer implements CommandLineRunner {
         car1.getImages().add(image3);
 
 
-/*
+
 
         Car car2 = Car.builder()
                 .model("Lamborghini Urus")
@@ -97,9 +97,9 @@ public class CarDataInitializer implements CommandLineRunner {
         car2.getImages().add(image4);
         car2.getImages().add(image5);
         car2.getImages().add(image6);
-*/
+
         //imageRepository.saveAll(Arrays.asList(image1, image2, image3));
-        carRepository.save(car1);
+        carRepository.saveAll(Arrays.asList(car1, car2));
     }
 
     private byte[] loadImageData(String imagePath) throws IOException {

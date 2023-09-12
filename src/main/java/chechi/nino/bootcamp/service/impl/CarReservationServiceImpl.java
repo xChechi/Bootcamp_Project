@@ -55,6 +55,13 @@ public class CarReservationServiceImpl implements CarReservationService {
         CarReservation carReservation = carReservationConverter.bookCar(userId, request);
         CarReservation savedReservation = carReservationRepository.save(carReservation);
 
+        int passengers = request.getPassengers();
+        int carCapacity = request.getCarType().getSeats();
+
+        if (passengers > carCapacity) {
+            throw new IllegalArgumentException("Number of passengers exceeds car capacity");
+        }
+
         return carReservationConverter.toCarReservationResponse(savedReservation);
     }
 
@@ -72,6 +79,13 @@ public class CarReservationServiceImpl implements CarReservationService {
         carReservation.setDailyCharge(request.getCarType().getDailyCharge());
 
         CarReservation savedCarReservation = carReservationRepository.save(carReservation);
+
+        int passengers = request.getPassengers();
+        int carCapacity = request.getCarType().getSeats();
+
+        if (passengers > carCapacity) {
+            throw new IllegalArgumentException("Number of passengers exceeds car capacity");
+        }
 
         return carReservationConverter.toCarReservationResponse(savedCarReservation);
     }
