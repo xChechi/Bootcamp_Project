@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @AllArgsConstructor
@@ -23,7 +24,7 @@ public class ScreenEventRequest {
     private String eventName;
 
     @Future
-    private LocalTime eventTime;
+    private LocalDateTime eventTime;
 
     private ZoneType zoneType;
 }

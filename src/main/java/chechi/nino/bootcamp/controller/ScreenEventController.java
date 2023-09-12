@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/v1/screen-event")
+@RequestMapping("/api/v1/screen-events")
 public class ScreenEventController {
 
     private final ScreenEventService screenEventService;
@@ -25,7 +25,7 @@ public class ScreenEventController {
         List<ScreenEventResponse> responses = screenEventService.getAllEvents();
 
         if (responses.isEmpty()) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } else {
             return ResponseEntity.status(HttpStatus.FOUND).body(responses);
         }
@@ -50,8 +50,7 @@ public class ScreenEventController {
     @PutMapping("/{id}")
     public ResponseEntity<ScreenEventResponse> updateEvent (@PathVariable Integer id, @Valid @RequestBody ScreenEventRequest request) {
 
-        ScreenEventResponse event = screenEventService.getEventById(id);
-
+        ScreenEventResponse event = screenEventService.updateEvent(id, request);
         return ResponseEntity.status(HttpStatus.OK).body(event);
     }
 

@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -31,9 +32,10 @@ public class ScreenEvent {
 
     @Future
     @Column(name = "event_time")
-    private LocalTime eventTime;
+    private LocalDateTime eventTime;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "zone_type")
     private ZoneType zoneType;
+
 }
