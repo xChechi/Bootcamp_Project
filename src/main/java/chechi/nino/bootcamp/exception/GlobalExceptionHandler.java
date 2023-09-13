@@ -51,4 +51,16 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(message.getMessage(), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(EventNotFoundException.class)
+    public ResponseEntity<String> handlerEventNotFound (EventNotFoundException message) {
+
+        return new ResponseEntity<>(message.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(BarSeatNotFoundException.class)
+    public ResponseEntity<String> handlerBarSeatNotFound (BarSeatNotFoundException message) {
+
+        return new ResponseEntity<>(message.getMessage(), HttpStatus.NOT_FOUND);
+    }
 }
