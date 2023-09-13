@@ -24,6 +24,19 @@ public class BarSeatInitializer implements CommandLineRunner {
 
     private void initializeRooms() {
 
+        ZoneType[] zones = ZoneType.values();
+        int seatsPerZone = 21;
+
+        for (ZoneType zone : zones) {
+            for (int i = 1; i <= seatsPerZone; i++) {
+                BarSeat seat = new BarSeat();
+                seat.setSeatNumber(i);
+                seat.setZoneType(zone);
+                barSeatRepository.save(seat);
+            }
+        }
+    }
+/*
         BarSeat seat1 = BarSeat.builder()
                 .seatNumber(1)
                 .zoneType(ZoneType.SCREEN_1)
@@ -132,4 +145,6 @@ public class BarSeatInitializer implements CommandLineRunner {
         barSeatRepository.saveAll(Arrays.asList(seat1, seat2, seat3, seat4, seat5, seat6, seat7, seat8, seat9, seat10, seat11, seat12, seat13
                                                 , seat14, seat15, seat16, seat17, seat18, seat19, seat20, seat21));
     }
+
+ */
 }
