@@ -1,5 +1,6 @@
 package chechi.nino.bootcamp.entity.reservation;
 
+import chechi.nino.bootcamp.entity.bar.BarSeat;
 import chechi.nino.bootcamp.entity.bar.ScreenEvent;
 import chechi.nino.bootcamp.entity.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -13,6 +14,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -44,6 +46,9 @@ public class BarReservation {
 
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
+
+    @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL)
+    private List<BarSeat> barSeatList;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
