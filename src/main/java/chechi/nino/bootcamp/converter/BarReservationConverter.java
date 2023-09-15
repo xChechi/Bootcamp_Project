@@ -15,6 +15,9 @@ import chechi.nino.bootcamp.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 @AllArgsConstructor
 public class BarReservationConverter {
@@ -29,12 +32,22 @@ public class BarReservationConverter {
     public BarReservation bookBarReservation (Integer userId, BarReservationRequest request) {
 
         User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("User not found"));
-        //BarSeat seat = barSeatRepository.findById(request.getSeatId()).orElseThrow(() -> new BarSeatNotFoundException("Seat not found"));
         ScreenEvent event = screenEventRepository.findById(request.getEventId()).orElseThrow(() -> new EventNotFoundException("Event not found"));
+
+        //List<BarSeat> barSeats = new ArrayList<>(request.getBarSeatList());
+
+        List<BarSeat> barSeats = new ArrayList<>();
+
+        for (BarSeat barSeat : request.getBarSeatList()) {
+            BarSeat fetchedBarSeat = barSeatRepository.findById(barSeat.getId())
+                    .orElseThrow(() -> new BarSeatNotFoundException("Bar seat not found: " + barSeat.getId()));
+            barSeats.add(fetchedBarSeat);
+        }
+        System.out.println(barSeats);
 
         return BarReservation.builder()
                 .user(user)
-                .barSeatList(request.getBarSeatList())
+                .barSeatList(barSeats)
                 .screenEvent(event)
                 .eventTime(request.getEventTime())
                 .guests(request.getGuests())

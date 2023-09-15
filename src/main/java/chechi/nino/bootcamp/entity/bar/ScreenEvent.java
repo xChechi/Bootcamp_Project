@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -39,8 +40,7 @@ public class ScreenEvent {
     @Column(name = "zone_type")
     private ZoneType zoneType;
 
-    @OneToOne
-    @JoinColumn(name = "bar_reservation_id", referencedColumnName = "id")
-    private BarReservation barReservation;
+    @OneToMany(mappedBy = "screenEvent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<BarReservation> barReservationList;
 
 }

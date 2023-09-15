@@ -14,6 +14,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -32,7 +33,8 @@ public class BarReservation {
     @Column(name = "event_time")
     private LocalDateTime eventTime;
 
-    @OneToOne(mappedBy = "barReservation", cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "event_id")
     private ScreenEvent screenEvent;
 
     @NotNull
@@ -47,7 +49,8 @@ public class BarReservation {
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
 
-    @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "reservation", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @JsonManagedReference
     private List<BarSeat> barSeatList;
 
     @ManyToOne(fetch = FetchType.LAZY)

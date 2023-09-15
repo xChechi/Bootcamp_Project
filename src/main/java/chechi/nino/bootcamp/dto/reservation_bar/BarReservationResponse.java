@@ -1,5 +1,6 @@
 package chechi.nino.bootcamp.dto.reservation_bar;
 
+import chechi.nino.bootcamp.dto.bar.BarSeatResponse;
 import chechi.nino.bootcamp.dto.event.ScreenEventResponse;
 import chechi.nino.bootcamp.dto.user.UserResponse;
 import chechi.nino.bootcamp.entity.bar.BarSeat;
