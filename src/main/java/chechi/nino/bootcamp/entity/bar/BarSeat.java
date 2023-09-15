@@ -1,5 +1,8 @@
 package chechi.nino.bootcamp.entity.bar;
 
+import chechi.nino.bootcamp.entity.reservation.BarReservation;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -26,4 +29,10 @@ public class BarSeat {
 
     @Enumerated(EnumType.STRING)
     private ZoneType zoneType;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bar_reservation_id")
+    //@JsonIgnore
+    @JsonBackReference
+    private BarReservation reservation;
 }

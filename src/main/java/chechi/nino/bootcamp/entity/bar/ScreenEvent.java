@@ -1,5 +1,6 @@
 package chechi.nino.bootcamp.entity.bar;
 
+import chechi.nino.bootcamp.entity.reservation.BarReservation;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -37,5 +39,8 @@ public class ScreenEvent {
     @Enumerated(EnumType.STRING)
     @Column(name = "zone_type")
     private ZoneType zoneType;
+
+    @OneToMany(mappedBy = "screenEvent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<BarReservation> barReservationList;
 
 }

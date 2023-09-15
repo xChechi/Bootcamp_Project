@@ -65,11 +65,11 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<TableReservation> tableReservationList;
-/*
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonBackReference
+    //@JsonBackReference
     private List<BarReservation> barReservationList;
-*/
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     //@JsonBackReference
     private List<CarReservation> carReservationList;
