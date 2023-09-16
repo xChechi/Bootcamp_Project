@@ -2,19 +2,21 @@ package chechi.nino.bootcamp.initiliazer;
 
 import chechi.nino.bootcamp.entity.room.*;
 import chechi.nino.bootcamp.repository.RoomRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
 @Component
+@AllArgsConstructor
 public class RoomDataInitializer implements CommandLineRunner {
 
     private final RoomRepository roomRepository;
 
-    public RoomDataInitializer(RoomRepository roomRepository) {
-        this.roomRepository = roomRepository;
-    }
+    //public RoomDataInitializer(RoomRepository roomRepository) {
+    //    this.roomRepository = roomRepository;
+    //}
 
     @Override
     public void run(String... args) {

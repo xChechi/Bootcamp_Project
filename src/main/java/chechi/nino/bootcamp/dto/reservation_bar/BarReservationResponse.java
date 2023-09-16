@@ -24,7 +24,7 @@ public class BarReservationResponse {
 
     private ScreenEventResponse event;
 
-    private List<BarSeat> barSeatList;
+    private List<BarSeatResponse> seats;
 
     @Future
     private LocalDateTime eventTime;
