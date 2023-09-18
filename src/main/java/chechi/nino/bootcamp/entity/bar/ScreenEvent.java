@@ -1,6 +1,7 @@
 package chechi.nino.bootcamp.entity.bar;
 
 import chechi.nino.bootcamp.entity.reservation.BarReservation;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
@@ -41,6 +42,7 @@ public class ScreenEvent {
     private ZoneType zoneType;
 
     @OneToMany(mappedBy = "screenEvent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<BarReservation> barReservationList;
 
 }

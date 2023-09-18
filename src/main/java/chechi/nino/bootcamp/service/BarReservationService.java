@@ -4,6 +4,7 @@ import chechi.nino.bootcamp.dto.reservation_bar.BarReservationRequest;
 import chechi.nino.bootcamp.dto.reservation_bar.BarReservationResponse;
 import chechi.nino.bootcamp.entity.reservation.BarReservation;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface BarReservationService {
@@ -13,4 +14,14 @@ public interface BarReservationService {
     BarReservationResponse getBarReservationById (Integer id);
 
     BarReservationResponse bookBarReservation (Integer userId, BarReservationRequest request);
+
+    void DeleteBarReservationById (Integer id);
+
+    BarReservationResponse updateBarReservation (Integer id, BarReservationRequest request);
+
+    List<BarReservationResponse> searchByUser (Integer userId);
+
+    List<BarReservationResponse> searchBySeat (Integer seatId);
+
+    List<BarReservationResponse> searchByDate (LocalDateTime date);
 }

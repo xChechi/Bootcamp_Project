@@ -1,5 +1,6 @@
 package chechi.nino.bootcamp.converter;
 
+import chechi.nino.bootcamp.dto.bar.BarSeatResponse;
 import chechi.nino.bootcamp.dto.reservation_bar.BarReservationRequest;
 import chechi.nino.bootcamp.dto.reservation_bar.BarReservationResponse;
 import chechi.nino.bootcamp.entity.bar.BarSeat;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -34,8 +36,9 @@ public class BarReservationConverter {
         User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("User not found"));
         ScreenEvent event = screenEventRepository.findById(request.getEventId()).orElseThrow(() -> new EventNotFoundException("Event not found"));
 
+        List<BarSeat> barSeats = fetchBarSeats(request.getBarSeatList());
         //List<BarSeat> barSeats = new ArrayList<>(request.getBarSeatList());
-
+/*
         List<BarSeat> barSeats = new ArrayList<>();
 
         for (BarSeat barSeat : request.getBarSeatList()) {
@@ -44,7 +47,7 @@ public class BarReservationConverter {
             barSeats.add(fetchedBarSeat);
         }
         System.out.println(barSeats);
-
+*/
         return BarReservation.builder()
                 .user(user)
                 .barSeatList(barSeats)
@@ -53,6 +56,20 @@ public class BarReservationConverter {
                 .guests(request.getGuests())
                 .totalCharge(calculateBarCharge(request.getGuests()))
                 .build();
+
+
+    }
+
+    private List<BarSeat> fetchBarSeats(List<BarSeat> barSeatList) {
+        List<BarSeat> barSeats = new ArrayList<>();
+
+        for (BarSeat barSeat : barSeatList) {
+            BarSeat fetchedBarSeat = barSeatRepository.findById(barSeat.getId())
+                    .orElseThrow(() -> new BarSeatNotFoundException("Bar seat not found: " + barSeat.getId()));
+            barSeats.add(fetchedBarSeat);
+        }
+
+        return barSeats;
     }
 
     public Double calculateBarCharge(Integer guests) {
@@ -61,11 +78,16 @@ public class BarReservationConverter {
 
     public BarReservationResponse toBarReservationResponse (BarReservation res) {
 
+        List<BarSeatResponse> seats = res.getBarSeatList()
+                .stream()
+                .map(barSeatConverter::toBarSeatResponse)
+                .collect(Collectors.toList());
+
         return BarReservationResponse.builder()
                 .id(res.getId())
                 .user(userConverter.toUserResponse(res.getUser()))
                 .event(screenEventConverter.toEventResponse(res.getScreenEvent()))
-                .barSeatList(res.getBarSeatList())
+                .seats(seats)
                 .eventTime(res.getEventTime())
                 .guests(res.getGuests())
                 .totalCharge(calculateBarCharge(res.getGuests()))

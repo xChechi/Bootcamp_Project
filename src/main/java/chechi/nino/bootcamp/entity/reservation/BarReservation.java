@@ -35,6 +35,7 @@ public class BarReservation {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "event_id")
+    @JsonIgnoreProperties("hibernateLazyInitializer")
     private ScreenEvent screenEvent;
 
     @NotNull
@@ -48,9 +49,16 @@ public class BarReservation {
 
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
+/*
+    @OneToMany(mappedBy = "reservation", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    //@JsonManagedReference
+    private List<BarSeat> barSeatList = new ArrayList<>();
+*/
 
-    @OneToMany(mappedBy = "reservation", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, orphanRemoval = true)
-    @JsonManagedReference
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "bar_reservation_seat",
+            joinColumns = @JoinColumn(name = "bar_reservation_id"),
+            inverseJoinColumns = @JoinColumn(name = "seat_id"))
     private List<BarSeat> barSeatList;
 
     @ManyToOne(fetch = FetchType.LAZY)
