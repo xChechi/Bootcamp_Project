@@ -16,6 +16,7 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -109,12 +110,12 @@ public class BarReservationServiceImpl implements BarReservationService {
     }
 
     @Override
-    public List<BarReservationResponse> searchByDate(LocalDateTime date) {
+    public List<BarReservationResponse> searchByDate(LocalDate date) {
 
         List<BarReservation> reservations = barReservationRepository.findAll();
 
         return reservations.stream()
-                .filter(res -> res.getEventTime().isEqual(date))
+                .filter(res -> res.getEventTime().toLocalDate().isEqual(date))
                 .map(barReservationConverter::toBarReservationResponse)
                 .toList();
     }

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -82,7 +83,7 @@ public class BarReservationController {
 
     @GetMapping(params = "date")
     public ResponseEntity<List<BarReservationResponse>> searchBarReservationByDate (
-            @RequestParam("reservationDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDateTime date) {
+            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
 
         List<BarReservationResponse> responses = barReservationService.searchByDate(date);
 
