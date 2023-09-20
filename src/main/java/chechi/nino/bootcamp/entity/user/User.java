@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,8 +29,8 @@ import java.util.List;
 @Data
 @Builder
 @Table(name = "users", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "first_name"),
-        @UniqueConstraint(columnNames = "last_name"),
+        //@UniqueConstraint(columnNames = "first_name"),
+        //@UniqueConstraint(columnNames = "last_name"),
         @UniqueConstraint(columnNames = "email")
 })
 public class User implements UserDetails {
@@ -61,6 +62,7 @@ public class User implements UserDetails {
     private Role role;
 
     @PasswordValidation
+    //@Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\d).{8,}$")
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -108,4 +110,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }
