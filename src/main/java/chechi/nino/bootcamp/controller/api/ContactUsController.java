@@ -1,4 +1,4 @@
-package chechi.nino.bootcamp.controller;
+package chechi.nino.bootcamp.controller.api;
 
 import chechi.nino.bootcamp.dto.contact.ContactUsRequest;
 import chechi.nino.bootcamp.entity.contact.ContactUsForm;

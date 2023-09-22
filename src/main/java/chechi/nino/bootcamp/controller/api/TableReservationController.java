@@ -1,4 +1,4 @@
-package chechi.nino.bootcamp.controller;
+package chechi.nino.bootcamp.controller.api;
 
 import chechi.nino.bootcamp.dto.reservation_table.TableReservationRequest;
 import chechi.nino.bootcamp.dto.reservation_table.TableReservationResponse;

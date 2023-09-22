@@ -4,6 +4,7 @@ import chechi.nino.bootcamp.dto.reservation_bar.BarReservationRequest;
 import chechi.nino.bootcamp.dto.reservation_bar.BarReservationResponse;
 import chechi.nino.bootcamp.entity.reservation.BarReservation;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,5 +24,5 @@ public interface BarReservationService {
 
     List<BarReservationResponse> searchBySeat (Integer seatId);
 
-    List<BarReservationResponse> searchByDate (LocalDateTime date);
+    List<BarReservationResponse> searchByDate (LocalDate date);
 }
