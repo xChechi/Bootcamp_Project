@@ -1,4 +1,4 @@
-package chechi.nino.bootcamp.controller;
+package chechi.nino.bootcamp.controller.api;
 
 import chechi.nino.bootcamp.dto.bar.BarSeatResponse;
 import chechi.nino.bootcamp.service.BarSeatService;

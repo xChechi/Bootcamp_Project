@@ -1,4 +1,4 @@
-package chechi.nino.bootcamp.controller;
+package chechi.nino.bootcamp.controller.api;
 
 import chechi.nino.bootcamp.dto.reservation_room.RoomReservationResponse;
 import chechi.nino.bootcamp.dto.user.UserRequest;
