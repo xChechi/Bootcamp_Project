@@ -28,8 +28,8 @@ public class SecurityConfig {
                 //.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         //.requestMatchers("/api/v1/auth/**").permitAll()
-                        .requestMatchers("/", "/api/v1/home", "/api/v1/register", "/api/v1/login", "/css/**",
-                                                  "/img/**", "/lib/**").permitAll()
+                        .requestMatchers("/", "/api/v1/home", "/api/v1/register", "/api/v1/login", "/api/v1/forgotten-password", "/css/**",
+                                                  "/img/**", "/lib/**", "/js/**").permitAll()
                         .requestMatchers("/api/v1/user/**").hasRole("USER")
                         .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated())

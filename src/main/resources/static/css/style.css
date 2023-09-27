@@ -105,7 +105,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(15, 23, 43, .7);
+    background: rgba(15, 23, 43, .3);
     z-index: 1;
 }
 
@@ -492,4 +492,97 @@
 
 #navbarRegister {
     align-items: right;
+}
+
+/*** Register ***/
+.register-body {
+    background-color: #0F172B;
+}
+
+.text-register-header {
+    padding-top: 40px;
+    color: #FEA116 !important;
+}
+
+.footer-register {
+    position: relative;
+    padding-top: 60px;
+}
+
+.footer-register .btn.btn-social {
+    margin-right: 5px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light);
+    border: 1px solid #FFFFFF;
+    border-radius: 35px;
+    transition: .3s;
+}
+
+.footer-register .btn.btn-social:hover {
+    color: var(--primary);
+}
+
+.footer-register .btn.btn-link {
+    display: block;
+    margin-bottom: 5px;
+    padding: 0;
+    text-align: left;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: normal;
+    text-transform: capitalize;
+    transition: .3s;
+}
+
+.footer-register .btn.btn-link::before {
+    position: relative;
+    content: "\f105";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 10px;
+}
+
+.footer-register .btn.btn-link:hover {
+    letter-spacing: 1px;
+    box-shadow: none;
+}
+
+.footer-register .copyright {
+    padding: 25px 0;
+    font-size: 15px;
+    border-top: 1px solid rgba(256, 256, 256, .8);
+}
+
+.footer-register .copyright a {
+    color: var(--light);
+}
+
+.footer-register .footer-menu a {
+    margin-right: 15px;
+    padding-right: 15px;
+    border-right: 1px solid rgba(255, 255, 255, .3);
+}
+
+.footer-register .footer-menu a:last-child {
+    margin-right: 0;
+    padding-right: 0;
+    border-right: none;
+}
+
+.hr-register {
+    color: #000;
+}
+
+.border-header {
+    border-bottom: 1px solid rgba(256, 256, 256, .8);
+    width: 85%;
+}
+
+.card {
+    margin-bottom: 50px;
+    margin-top: 50px;
 }
