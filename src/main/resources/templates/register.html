@@ -84,6 +84,10 @@
               <p>Already have an account? <a th:href="@{/api/v1/login}">Log in here</a></p>
             </div>
 
+            <div th:if="${jwtToken}" class="alert alert-success">
+              Registration Successful. Your JWT Token: <span th:text="${jwtToken}"></span>
+            </div>
+
           </form>
         </div>
       </div>

@@ -48,7 +48,7 @@
                     </div>
                     <div class="card-body">
                         <form th:action="@{/api/v1/login}" method="post">
-
+                            <input type="hidden" th:if="${jwtToken}" name="jwtToken" th:value="${jwtToken}" />
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" required>
@@ -64,6 +64,11 @@
                             <div class="text-center pt-3">
                                 <p>Forgotten password? <a th:href="@{/api/v1/forgotten-password}">Click here</a></p>
                             </div>
+
+                            <div th:if="${jwtToken}" class="alert alert-success">
+                                Login Successful. Your JWT Token: <span th:text="${jwtToken}"></span>
+                            </div>
+
                         </form>
                     </div>
                 </div>
