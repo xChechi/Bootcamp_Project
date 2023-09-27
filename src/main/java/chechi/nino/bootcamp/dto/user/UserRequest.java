@@ -37,7 +37,7 @@ public class UserRequest {
     @PasswordValidation
     private String password;
 
-    private List<RoomReservation> roomReservationList;
+    //private List<RoomReservation> roomReservationList;
 
     //@ValidReservationList
     //private List<TableReservation> tableReservationList;
