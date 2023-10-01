@@ -34,3 +34,7 @@ spring:
 image:
   upload:
     directory: src/main/resources/images
+
+logging:
+  level:
+    org.springframework.security: DEBUG

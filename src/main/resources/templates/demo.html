@@ -24,6 +24,17 @@
   <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<!-- Check if data attribute is present in the model -->
+<div th:if="${data}">
   <h1>I am in !!!</h1>
+</div>
+
+<!-- Handle the case where data attribute is not present (error) -->
+<div th:unless="${data}">
+  <h1>Error Occurred</h1>
+  <p>There was an error processing your request.</p>
+  <!-- You can customize the error message further based on your requirements -->
+</div>
+
 </body>
 </html>
