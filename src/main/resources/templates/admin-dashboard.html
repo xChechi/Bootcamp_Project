@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moonlight Hotel</title>
+    <title>Admin Dashboard</title>
 
     <!-- Favicon -->
     <link th:href="@{/img/favicon.ico}" rel="icon">
@@ -23,67 +23,52 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
-<!-- Check if data attribute is present in the model -->
-<div class="bg-dark">
-
-    <div class="container-fluid bg-dark px-0  border-header">
-        <div class="container pb-5">
-            <div class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-                <a th:href="@{/api/v1/home}">
-                    <h1 class="m-0 text-register-header text-uppercase pt-20">Moonlight Hotel</h1>
-                </a>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light">
+            <div class="col-lg-3 d-none d-lg-block ">
+                <h5 class="m-0 text-primary text-uppercase">Moonlight Hotel</h5>
             </div>
-        </div>
-    </div>
-
-    <div class="container mt-5">
-        <ul class="nav nav-pills justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="pill" href="#home">Tab 1</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" href="#menu1">Tab 2</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" href="#menu2">Tab 3</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" href="#menu3">Tab 4</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" href="#menu4">Tab 5</a>
-            </li>
-        </ul>
-
-        <div class="tab-content mt-2">
-            <div class="tab-pane container active" id="home">
-                <!-- Bootstrap Table -->
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Column 1</th>
-                        <th>Column 2</th>
-                        <th>Column 3</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Data 1</td>
-                        <td>Data 2</td>
-                        <td>Data 3</td>
-                    </tr>
-                    <!-- Add more rows as needed -->
-                    </tbody>
-                </table>
+            <!-- Navbar content here -->
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/users}">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/rooms}">Rooms</a>
+                </li>
+                <!-- Add more sidebar items as needed -->
+            </ul>
+        </nav>
+        <!-- Main content area -->
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Admin Dashboard</h1>
             </div>
-            <!-- Add more tab panes as needed -->
-        </div>
-    </div>
+            <div class="content">
+                <!-- Default content (an image) -->
+                <img src="/img/dashboard.png" alt="Default Image" class="img-fluid">
+            </div>
+            <!-- Users Content -->
+            <div th:if="${showUsers}">
+                <div th:utext="${usersFragment}"></div>
+            </div>
+            <!-- Rooms Content -->
+            <div th:if="${showRooms}">
+                <div th:utext="${roomsFragment}"></div>
+            </div>
+        </main>
 
+
+    </div>
 </div>
 
+<!-- Bootstrap JS and other script imports -->
+<!-- ... -->
+
 </body>
+
 </html>
