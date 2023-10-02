@@ -53,7 +53,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/v1/auth/**", "/", "/api/v1/home", "/api/v1/login", "/api/v1/register").permitAll()
                         .requestMatchers("/css/**", "/img/**", "/lib/**", "/js/**").permitAll()
-                        .requestMatchers("/api/v1/demo").permitAll() //.hasAnyRole("USER", "ADMIN")   // Added after
+                        .requestMatchers("/api/v1/demo", "/api/**").permitAll() //.hasAnyRole("USER", "ADMIN")   // Added after
                         //.requestMatchers("/swagger-ui/**", "/webjars/**", "/swagger-resources/**", "/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(sessionManagementConfig -> sessionManagementConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
