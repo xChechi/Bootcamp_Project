@@ -53,10 +53,12 @@ public class AdminDashboardController {
         StringBuilder fragment = new StringBuilder();
         fragment.append("<h1 class='bg-primary text-white p-2'>Users List</h1>");
         fragment.append("<table class='table table-bordered'>");
-        fragment.append("<thead class='bg-primary text-white'><tr><th>Name</th><th>Email</th></tr></thead>");
+        fragment.append("<thead class='bg-primary text-center text-white'><tr><th>ID</th><th>Name</th><th>Phone number</th><th>Email</th></tr></thead>");
         fragment.append("<tbody>");
         for (UserResponse user : users) {
-            fragment.append("<tr><td>").append(user.getFirstName()).append(" ").append(user.getLastName()).append("</td>");
+            fragment.append("<tr><td class='text-center'>").append(user.getId()).append("</td>");
+            fragment.append("<td>").append(user.getFirstName()).append(" ").append(user.getLastName()).append("</td>");
+            fragment.append("<td>").append(user.getPhoneNumber()).append("</td>");
             fragment.append("<td>").append(user.getEmail()).append("</td></tr>");
         }
         fragment.append("</tbody></table>");
@@ -67,17 +69,17 @@ public class AdminDashboardController {
         StringBuilder fragment = new StringBuilder();
         fragment.append("<h1 class='bg-primary text-white p-2'>Rooms List</h1>");
         fragment.append("<table class='table table-bordered'>");
-        fragment.append("<thead class='bg-primary text-white'><tr><th>Room Number</th><th>Room Type</th><th>Room View</th><th>Price</th><th>Size</th><th>Capacity</th><th>Facilities</th></tr></thead>");
+        fragment.append("<thead class='bg-primary text-center text-white'><tr><th>Room Number</th><th>Room Type</th><th>Room View</th><th>Price</th><th>Size</th><th>Capacity</th><th>Facilities</th></tr></thead>");
         fragment.append("<tbody>");
 
         for (RoomResponse room : rooms) {
             fragment.append("<tr>");
-            fragment.append("<td>").append(room.getRoomNumber()).append("</td>");
-            fragment.append("<td>").append(room.getRoomType()).append("</td>");
-            fragment.append("<td>").append(room.getRoomView()).append("</td>");
-            fragment.append("<td>").append(room.getRoomPrice()).append("</td>");
-            fragment.append("<td>").append(room.getRoomSize()).append("</td>");
-            fragment.append("<td>").append(room.getRoomCapacity()).append("</td>");
+            fragment.append("<td class='text-center'>").append(room.getRoomNumber()).append("</td>");
+            fragment.append("<td class='text-center'>").append(room.getRoomType()).append("</td>");
+            fragment.append("<td class='text-center'>").append(room.getRoomView()).append("</td>");
+            fragment.append("<td class='text-center'>").append(room.getRoomPrice()).append("</td>");
+            fragment.append("<td class='text-center'>").append(room.getRoomSize()).append("</td>");
+            fragment.append("<td class='text-center'>").append(room.getRoomCapacity()).append("</td>");
             fragment.append("<td>").append(getFacilitiesDisplayNames(room.getFacilities())).append("</td>");
             fragment.append("</tr>");
         }
