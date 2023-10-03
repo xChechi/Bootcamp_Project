@@ -593,13 +593,13 @@
 
 }
 
-.nav-item {
+.sidebar-item {
     text-align: left;
     position: relative;
     transition: background-color 0.3s;
 }
 
-.nav-item:hover {
+.sidebar-item:hover {
     background-color: #f0f0f0; /* Change the background color on hover */
 }
 
