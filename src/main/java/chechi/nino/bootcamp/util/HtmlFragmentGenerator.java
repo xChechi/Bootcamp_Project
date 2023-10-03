@@ -60,4 +60,12 @@ public class HtmlFragmentGenerator {
         }
         return facilityNames.toString();
     }
+
+    public String generateDashboard() {
+        StringBuilder fragment = new StringBuilder();
+        fragment.append("<img src='/img/dashboard.png' alt='Default Image' class='img-fluid'>");
+
+        return fragment.toString();
+    }
+
 }
