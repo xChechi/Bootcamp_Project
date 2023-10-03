@@ -51,7 +51,7 @@ public class AdminDashboardController {
 
     private String generateUserListFragment(List<UserResponse> users) {
         StringBuilder fragment = new StringBuilder();
-        fragment.append("<h1 class='bg-primary text-white p-2'>Users List</h1>");
+        fragment.append("<h4 class='bg-primary text-white p-2'>Users List</h4>");
         fragment.append("<table class='table table-bordered'>");
         fragment.append("<thead class='bg-primary text-center text-white'><tr><th>ID</th><th>Name</th><th>Phone number</th><th>Email</th></tr></thead>");
         fragment.append("<tbody>");
@@ -67,7 +67,7 @@ public class AdminDashboardController {
 
     private String generateRoomListFragment(List<RoomResponse> rooms) {
         StringBuilder fragment = new StringBuilder();
-        fragment.append("<h1 class='bg-primary text-white p-2'>Rooms List</h1>");
+        fragment.append("<h4 class='bg-primary text-white p-2'>Rooms List</h4>");
         fragment.append("<table class='table table-bordered'>");
         fragment.append("<thead class='bg-primary text-center text-white'><tr><th>Room Number</th><th>Room Type</th><th>Room View</th><th>Price</th><th>Size</th><th>Capacity</th><th>Facilities</th></tr></thead>");
         fragment.append("<tbody>");

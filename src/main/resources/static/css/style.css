@@ -586,3 +586,83 @@
     margin-bottom: 50px;
     margin-top: 50px;
 }
+
+/*** Admin Dashboard Sidebar ***/
+#sidebar {
+    width: 16.5%;
+
+}
+
+.nav-item {
+    text-align: left;
+    position: relative;
+    transition: background-color 0.3s;
+}
+
+.nav-item:hover {
+    background-color: #f0f0f0; /* Change the background color on hover */
+}
+
+.menu-title {
+    margin-right: 10px; /* Add space between text and icon */
+}
+
+.menu-icon {
+    float: right; /* Align the icon to the right */
+}
+
+.margin-fix {
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.nav-profile {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-profile-content {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the content horizontally */
+    margin-right: 10px;
+
+}
+
+.nav-profile-image img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+}
+
+.nav-profile-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.font-weight-bold {
+    font-weight: bold;
+}
+
+.text-secondary {
+    color: #6c757d;
+    font-size: 12px;
+}
+
+.nav-profile-badge {
+    float: right;
+    color: #FEA116;
+    margin-left: auto;
+    padding-right: 10px;
+}
+
+
+
+
+
+
+
+
