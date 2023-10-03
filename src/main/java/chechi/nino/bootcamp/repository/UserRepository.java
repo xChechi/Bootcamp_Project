@@ -1,5 +1,6 @@
 package chechi.nino.bootcamp.repository;
 
+import chechi.nino.bootcamp.entity.user.Role;
 import chechi.nino.bootcamp.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,6 +15,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     boolean existsByEmail(String email);
 
     Optional<User> findByEmail (String email);
+
+    User findByRole(Role role);
 /*
     @Query("SELECT u FROM User u WHERE u.email = :email")
     Optional<User> findByEmail(@Param("email") String email);

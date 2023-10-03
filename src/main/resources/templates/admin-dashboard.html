@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <!-- Favicon -->
+    <link th:href="@{/img/favicon.ico}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link th:href="@{https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap}" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css}" rel="stylesheet">
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css}" rel="stylesheet">
+
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="col-md-2 col-lg-2 d-md-block bg-light">
+            <div class="text-center mb-3">
+                <h5 class="margin-fix text-primary text-uppercase">Moonlight Hotel</h5>
+            </div>
+            <!-- Navbar content here -->
+            <ul class="nav flex-column">
+
+                <li class="nav-profile p-1 text-center nav-item">
+                    <div class="nav-profile-content">
+                        <div class="nav-profile-image mr-2">
+                            <img src="/img/face1.jpg" alt="profile" class="rounded-circle">
+                            <span class="login-status online"></span>
+                        </div>
+                        <div class="nav-profile-text">
+                            <span class="font-weight-bold">Stefan Nasev</span>
+                            <span class="text-secondary text-small">Owner</span>
+                        </div>
+                    </div>
+                    <i class="bi nav-profile-badge bi-layout-wtf"></i>
+                </li>
+
+
+
+                <li class="sidebar-item">
+                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/users}">
+                        <span class="menu-title">Users</span>
+                        <i class="bi bi-person menu-icon"></i>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/rooms}">
+                        <span class="menu-title">Rooms</span>
+                        <i class="bi bi-door-closed menu-icon"></i>
+                    </a>
+                </li>
+                <!-- Add more sidebar items as needed -->
+            </ul>
+        </nav>
+        <!-- Main content area -->
+        <main role="main" class="col-md-10 col-lg-10 ml-sm-auto px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Admin Dashboard</h1>
+            </div>
+            <!-- Default content (an image) - hidden when either showUsers or showRooms is true -->
+            <div th:unless="${showUsers} or ${showRooms}" class="content">
+                <img src="/img/dashboard.png" alt="Default Image" class="img-fluid">
+            </div>
+            <!-- Users Content -->
+            <div th:if="${showUsers}">
+                <div th:utext="${usersFragment}"></div>
+            </div>
+            <!-- Rooms Content -->
+            <div th:if="${showRooms}">
+                <div th:utext="${roomsFragment}"></div>
+            </div>
+        </main>
+
+
+    </div>
+</div>
+
+<!-- Bootstrap JS and other script imports -->
+<!-- ... -->
+
+</body>
+
+</html>

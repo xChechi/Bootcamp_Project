@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demo</title>
+  <title>Moonlight Hotel</title>
 
   <!-- Favicon -->
   <link th:href="@{/img/favicon.ico}" rel="icon">
@@ -26,7 +26,8 @@
 <body>
 <!-- Check if data attribute is present in the model -->
 <div th:if="${data}">
-  <h1>I am in !!!</h1>
+  <h1>Access denied</h1>
+  <p>Your account do not have required role to access this endpoint.</p>
 </div>
 
 <!-- Handle the case where data attribute is not present (error) -->
