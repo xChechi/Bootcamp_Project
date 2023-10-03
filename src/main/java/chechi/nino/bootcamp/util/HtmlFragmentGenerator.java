@@ -12,12 +12,12 @@ public class HtmlFragmentGenerator {
 
     public String generateUserListFragment(List<UserResponse> users) {
         StringBuilder fragment = new StringBuilder();
-        fragment.append("<h4 class='bg-primary text-white p-2'>Users List</h4>");
+        fragment.append("<h4 class='bg-primary text-white p-2'>Clients List</h4>");
         fragment.append("<table class='table table-bordered'>");
         fragment.append("<thead class='bg-primary text-center text-white'><tr><th>ID</th><th>Name</th><th>Phone number</th><th>Email</th></tr></thead>");
         fragment.append("<tbody>");
         for (UserResponse user : users) {
-            fragment.append("<tr><td class='text-center'>").append(user.getId()).append("</td>");
+            fragment.append("<tr class='table-row-hover'><td class='text-center'>").append(user.getId()).append("</td>");
             fragment.append("<td>").append(user.getFirstName()).append(" ").append(user.getLastName()).append("</td>");
             fragment.append("<td>").append(user.getPhoneNumber()).append("</td>");
             fragment.append("<td>").append(user.getEmail()).append("</td></tr>");
@@ -34,7 +34,7 @@ public class HtmlFragmentGenerator {
         fragment.append("<tbody>");
 
         for (RoomResponse room : rooms) {
-            fragment.append("<tr>");
+            fragment.append("<tr class='table-row-hover'>");
             fragment.append("<td class='text-center'>").append(room.getRoomNumber()).append("</td>");
             fragment.append("<td class='text-center'>").append(room.getRoomType()).append("</td>");
             fragment.append("<td class='text-center'>").append(room.getRoomView()).append("</td>");
