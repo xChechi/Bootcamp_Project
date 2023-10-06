@@ -47,7 +47,7 @@ public class DemoController {
             var user = userRepository.findByEmail(email);
 
             if (user.filter(f -> f.getRole().equals(Role.ADMIN)).isPresent()) {
-                return "admin-dashboard";
+                return "redirect:/api/v1/admin-dashboard/dashboard";
             } else if (user.filter(f -> f.getRole().equals(Role.USER)).isPresent()) {
                 return "my-dashboard";
             } else

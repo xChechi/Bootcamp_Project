@@ -134,8 +134,11 @@ public class RoomReservationServiceImpl implements RoomReservationService {
     }
 
     @Override
-    public List<RoomReservation> findReservationsWithinPeriod(LocalDate startDate, LocalDate endDate) {
+    public List<RoomReservationResponse> findReservationsWithinPeriod(LocalDate startDate, LocalDate endDate) {
+        List<RoomReservation> reservationsWithinPeriod = roomReservationRepository.findReservationsWithinPeriod(startDate, endDate);
 
-        return roomReservationRepository.findReservationsWithinPeriod(startDate, endDate);
+        return reservationsWithinPeriod.stream()
+                .map(roomReservationConverter::toRoomReservationResponse)
+                .collect(Collectors.toList());
     }
 }
