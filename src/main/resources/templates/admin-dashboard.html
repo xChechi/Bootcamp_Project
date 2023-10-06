@@ -54,7 +54,7 @@
                 <li class="sidebar-item">
                     <a class="nav-link active" href="#" th:href="@{/api/v1/admin-dashboard/dashboard}">
                         <span class="menu-title">Dashboard</span>
-                        <i class="bi bi-person menu-icon"></i>
+                        <i class="bi bi-speedometer2 menu-icon"></i>
                     </a>
                 </li>
 
@@ -68,6 +68,60 @@
                     <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/rooms}">
                         <span class="menu-title">Rooms</span>
                         <i class="bi bi-door-closed menu-icon"></i>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/tables}">
+                        <span class="menu-title">Restaurant Tables</span>
+                        <i class="bi bi-table menu-icon"></i>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/seats}">
+                        <span class="menu-title">Bar Seats</span>
+                        <i class="bi bi-cup-straw menu-icon"></i>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/cars}">
+                        <span class="menu-title">Cars</span>
+                        <i class="bi bi-truck menu-icon"></i>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/roomReservations}">
+                        <span class="menu-title">Room Reservations</span>
+                        <i class="bi bi-calendar menu-icon"></i>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/tablesReservations}">
+                        <span class="menu-title">Restaurant Reservations</span>
+                        <i class="bi bi-calendar menu-icon"></i>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/barReservations}">
+                        <span class="menu-title">Bar Reservations</span>
+                        <i class="bi bi-calendar menu-icon"></i>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/carReservations}">
+                        <span class="menu-title">Car Reservations</span>
+                        <i class="bi bi-calendar menu-icon"></i>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/events}">
+                        <span class="menu-title">Bar Screen Events</span>
+                        <i class="bi bi-megaphone menu-icon"></i>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/clients}">
+                        <span class="menu-title">Client Requests</span>
+                        <i class="bi bi-file-earmark-text menu-icon"></i>
                     </a>
                 </li>
                 <!-- Add more sidebar items as needed -->
@@ -97,6 +151,22 @@
             <!-- Rooms Content -->
             <div th:if="${showRooms}">
                 <div th:utext="${roomsFragment}"></div>
+            </div>
+            <!-- Tables Content -->
+            <div th:if="${showTables}">
+                <div th:utext="${tablesFragment}"></div>
+            </div>
+            <!-- Bar Seats Content -->
+            <div th:if="${showSeats}">
+                <div th:utext="${seatsFragment}"></div>
+            </div>
+            <!-- Room Reservations Content -->
+            <div th:if="${showRoomReservations}">
+                <div th:utext="${roomReservationsFragment}"></div>
+            </div>
+            <!-- Cars Content -->
+            <div th:if="${showCars}">
+                <div th:utext="${carsFragment}"></div>
             </div>
         </main>
 

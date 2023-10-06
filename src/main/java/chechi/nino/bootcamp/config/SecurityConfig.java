@@ -49,7 +49,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
-                .csrf(csrf -> csrf.disable()) // (csrf -> csrf.disable()) // Commented after
+                .csrf(AbstractHttpConfigurer::disable) // (csrf -> csrf.disable()) // Commented after
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/v1/auth/**", "/", "/api/v1/home", "/api/v1/login", "/api/v1/register").permitAll()
                         .requestMatchers("/css/**", "/img/**", "/lib/**", "/js/**").permitAll()

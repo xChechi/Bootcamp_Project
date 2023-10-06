@@ -27,5 +27,5 @@ public interface RoomReservationService {
 
     List<RoomReservationResponse> searchByRoom (Integer roomId);
 
-    List<RoomReservation> findReservationsWithinPeriod(LocalDate startDate, LocalDate endDate);
+    List<RoomReservationResponse> findReservationsWithinPeriod(LocalDate startDate, LocalDate endDate);
 }

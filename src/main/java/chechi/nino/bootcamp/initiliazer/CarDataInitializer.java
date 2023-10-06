@@ -5,6 +5,7 @@ import chechi.nino.bootcamp.entity.car.CarType;
 import chechi.nino.bootcamp.entity.car.Image;
 import chechi.nino.bootcamp.repository.CarRepository;
 import chechi.nino.bootcamp.repository.ImageRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -31,12 +32,13 @@ public class CarDataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        if (carRepository.count() == 0) {
-            initializeCars();
-        }
+            if (carRepository.count() == 0) {
+                initializeCars();
+            }
 
     }
 
+    @Transactional
     private void initializeCars() throws IOException {
 
         byte[] imageData1 = loadImageData("sport/ferrari/1.jpg");
@@ -45,31 +47,31 @@ public class CarDataInitializer implements CommandLineRunner {
         byte[] imageData4 = loadImageData("sport/lamborghini/lambo_1.jpg");
         byte[] imageData5 = loadImageData("sport/lamborghini/lambo_2.jpg");
         byte[] imageData6 = loadImageData("sport/lamborghini/lambo_3.jpg");
-        byte[] imageData7 = loadImageData("sport/ferrari/3.jpg");
+        byte[] imageData7 = loadImageData("sport/audi/audi_r8_1.jpg");
         byte[] imageData8 = loadImageData("sport/ferrari/3.jpg");
         byte[] imageData9 = loadImageData("sport/ferrari/3.jpg");
-        byte[] imageData10 = loadImageData("sport/ferrari/3.jpg");
+        byte[] imageData10 = loadImageData("sedan/mercedes/mercedes_s_1.jpg");
         byte[] imageData11 = loadImageData("sport/ferrari/3.jpg");
         byte[] imageData12 = loadImageData("sport/ferrari/3.jpg");
-        byte[] imageData13 = loadImageData("sport/ferrari/3.jpg");
+        byte[] imageData13 = loadImageData("sedan/audi/audi_a8_1.jpg");
         byte[] imageData14 = loadImageData("sport/ferrari/3.jpg");
         byte[] imageData15 = loadImageData("sport/ferrari/3.jpg");
-        byte[] imageData16 = loadImageData("sport/ferrari/3.jpg");
+        byte[] imageData16 = loadImageData("sedan/bmw/bmw_5_1.jpg");
         byte[] imageData17 = loadImageData("sport/ferrari/3.jpg");
         byte[] imageData18 = loadImageData("sport/ferrari/3.jpg");
-        byte[] imageData19 = loadImageData("sport/ferrari/3.jpg");
+        byte[] imageData19 = loadImageData("sedan/vw/vw_passat_1.jpg");
         byte[] imageData20 = loadImageData("sport/ferrari/3.jpg");
         byte[] imageData21 = loadImageData("sport/ferrari/3.jpg");
-        byte[] imageData22 = loadImageData("sport/ferrari/3.jpg");
+        byte[] imageData22 = loadImageData("van/mercedes/mercedes_v_1.jpg");
         byte[] imageData23 = loadImageData("sport/ferrari/3.jpg");
         byte[] imageData24 = loadImageData("sport/ferrari/3.jpg");
-        byte[] imageData25 = loadImageData("sport/ferrari/3.jpg");
+        byte[] imageData25 = loadImageData("van/vw/vw_r_1.jpg");
         byte[] imageData26 = loadImageData("sport/ferrari/3.jpg");
         byte[] imageData27 = loadImageData("sport/ferrari/3.jpg");
-        byte[] imageData28 = loadImageData("sport/ferrari/3.jpg");
+        byte[] imageData28 = loadImageData("van/bmw/bmw_1.jpg");
         byte[] imageData29 = loadImageData("sport/ferrari/3.jpg");
         byte[] imageData30 = loadImageData("sport/ferrari/3.jpg");
-        byte[] imageData31 = loadImageData("sport/ferrari/3.jpg");
+        byte[] imageData31 = loadImageData("van/hyundai/hyundai_h_1.jpg");
         byte[] imageData32 = loadImageData("sport/ferrari/3.jpg");
         byte[] imageData33 = loadImageData("sport/ferrari/3.jpg");
 

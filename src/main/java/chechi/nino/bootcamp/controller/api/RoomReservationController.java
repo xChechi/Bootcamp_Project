@@ -100,11 +100,11 @@ public class RoomReservationController {
 
     @GetMapping("/period")
     //@PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<RoomReservation>> findReservationsWithinPeriod(
+    public ResponseEntity<List<RoomReservationResponse>> findReservationsWithinPeriod(
             @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate startDate,
             @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate endDate) {
 
-        List<RoomReservation> responseList = roomReservationService.findReservationsWithinPeriod(startDate, endDate);
+        List<RoomReservationResponse> responseList = roomReservationService.findReservationsWithinPeriod(startDate, endDate);
 
         if (responseList.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
