@@ -95,7 +95,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/tablesReservations}">
+                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/tableReservations}">
                         <span class="menu-title">Restaurant Reservations</span>
                         <i class="bi bi-calendar menu-icon"></i>
                     </a>
@@ -163,6 +163,10 @@
             <!-- Room Reservations Content -->
             <div th:if="${showRoomReservations}">
                 <div th:utext="${roomReservationsFragment}"></div>
+            </div>
+            <!-- Table Reservations Content -->
+            <div th:if="${showTableReservations}">
+                <div th:utext="${tableReservationsFragment}"></div>
             </div>
             <!-- Cars Content -->
             <div th:if="${showCars}">

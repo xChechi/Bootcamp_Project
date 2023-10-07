@@ -3,6 +3,7 @@ package chechi.nino.bootcamp.util;
 import chechi.nino.bootcamp.dto.bar.BarSeatResponse;
 import chechi.nino.bootcamp.dto.car.CarResponse;
 import chechi.nino.bootcamp.dto.reservation_room.RoomReservationResponse;
+import chechi.nino.bootcamp.dto.reservation_table.TableReservationResponse;
 import chechi.nino.bootcamp.dto.room.RoomResponse;
 import chechi.nino.bootcamp.dto.table.TableResponse;
 import chechi.nino.bootcamp.dto.user.UserResponse;
@@ -193,6 +194,52 @@ public class HtmlFragmentGenerator {
 
         fragment.append("</div>"); // End row and columns
 
+        return fragment.toString();
+    }
+
+    public String generateTableReservationListFragment (List<TableReservationResponse> reservations) {
+        StringBuilder fragment = new StringBuilder();
+        fragment.append("<h4 class='bg-primary text-white p-2'>Table Reservations List</h4>");
+
+        fragment.append("<form th:action='@{/api/v1/admin-dashboard/roomReservations}' method='get' class='mb-4'>");
+        fragment.append("<div class='row'>");
+        fragment.append("<div class='col-md-4'>");
+        fragment.append("<label for='userSearch' class='form-label'>Search by User:</label>");
+        fragment.append("<input type='text' id='userSearch' name='userSearch' class='form-control' placeholder='Enter User ID'>");
+        fragment.append("</div>");
+        fragment.append("<div class='col-md-4'>");
+        fragment.append("<label for='roomSearch' class='form-label'>Search by Table:</label>");
+        fragment.append("<input type='text' id='tableSearch' name='tableSearch' class='form-control' placeholder='Enter Table ID'>");
+        fragment.append("</div>");
+        fragment.append("<div class='col-md-4'>");
+        fragment.append("<label for='dateSearch' class='form-label'>Search by Date:</label>");
+        fragment.append("<input type='date' id='dateSearch' name='dateSearch' class='form-control'>");
+        fragment.append("</div>");
+        fragment.append("<div class='col-md-1'>");
+        fragment.append("<button type='submit' class='btn btn-primary mt-4'>Search</button>");
+        fragment.append("</div>");
+        fragment.append("</div>");
+        fragment.append("</form>");
+
+        fragment.append("<table class='table table-bordered'>");
+        fragment.append("<thead class='bg-primary text-center text-white'><tr><th>ID</th><th>Client</th><th>Table</th><th>Date</th><th>Time</th><th>Number of Guests</th><th>Zone</th><th>Smoking Area</th><th>Capacity</th></tr></thead>");
+        fragment.append("<tbody>");
+
+        for (TableReservationResponse reservation : reservations) {
+            fragment.append("<tr class='table-row-hover'>");
+            fragment.append("<td class='text-center'>").append(reservation.getId()).append("</td>");
+            fragment.append("<td class='text-center'>").append(reservation.getUser().getFirstName()).append(" ").append(reservation.getUser().getLastName()).append("</td>");
+            fragment.append("<td class='text-center'>").append(reservation.getTable().getTableNumber()).append("</td>");
+            fragment.append("<td class='text-center'>").append(reservation.getReservationDate()).append("</td>");
+            fragment.append("<td class='text-center'>").append(reservation.getReservationTime()).append("</td>");
+            fragment.append("<td class='text-center'>").append(reservation.getGuests()).append("</td>");
+            fragment.append("<td class='text-center'>").append(reservation.getTableZone()).append("</td>");
+            fragment.append("<td class='text-center'>").append(reservation.getTableZone().isSmoke() ? "Yes" : "No").append("</td>");
+            fragment.append("<td class='text-center'>").append(reservation.getTableZone().getTableCapacity()).append("</td>");
+            fragment.append("</tr>");
+        }
+
+        fragment.append("</tbody></table>");
         return fragment.toString();
     }
 
