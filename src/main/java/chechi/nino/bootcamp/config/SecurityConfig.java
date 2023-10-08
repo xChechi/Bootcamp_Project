@@ -56,6 +56,13 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/demo", "/api/**", "/**").permitAll() //.hasAnyRole("USER", "ADMIN")   // Added after
                         //.requestMatchers("/swagger-ui/**", "/webjars/**", "/swagger-resources/**", "/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated())
+                //.formLogin(form -> form
+                //        .loginPage("/api/v1/login")
+                //        .loginProcessingUrl("/api/v1/login")
+                //        .defaultSuccessUrl("/api/v1/demo")
+                //        .failureUrl("/api/v1/login?error=true")
+                //        .permitAll()
+                //)
                 .sessionManagement(sessionManagementConfig -> sessionManagementConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class); // AuthFilter is mine, UsernameFilter is by default

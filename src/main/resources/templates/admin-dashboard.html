@@ -168,6 +168,14 @@
             <div th:if="${showTableReservations}">
                 <div th:utext="${tableReservationsFragment}"></div>
             </div>
+            <!-- Bar Reservations Content -->
+            <div th:if="${showBarReservations}">
+                <div th:utext="${barReservationsFragment}"></div>
+            </div>
+            <!-- Car Reservations Content -->
+            <div th:if="${showCarReservations}">
+                <div th:utext="${carReservationsFragment}"></div>
+            </div>
             <!-- Cars Content -->
             <div th:if="${showCars}">
                 <div th:utext="${carsFragment}"></div>

@@ -3,6 +3,8 @@ package chechi.nino.bootcamp.controller.html;
 import chechi.nino.bootcamp.config.ApiUrlProviderConfig;
 import chechi.nino.bootcamp.dto.bar.BarSeatResponse;
 import chechi.nino.bootcamp.dto.car.CarResponse;
+import chechi.nino.bootcamp.dto.reservation_bar.BarReservationResponse;
+import chechi.nino.bootcamp.dto.reservation_car.CarReservationResponse;
 import chechi.nino.bootcamp.dto.reservation_room.RoomReservationResponse;
 import chechi.nino.bootcamp.dto.reservation_table.TableReservationResponse;
 import chechi.nino.bootcamp.dto.room.RoomResponse;
@@ -42,6 +44,8 @@ public class AdminDashboardController {
     private final RoomReservationService roomReservationService;
     private final CarService carService;
     private final TableReservationService tableReservationService;
+    private final BarReservationService barReservationService;
+    private final CarReservationService carReservationService;
 
     @GetMapping
     public String adminDashboard (Model model, HttpServletRequest httpServletRequest) {
@@ -60,6 +64,8 @@ public class AdminDashboardController {
             model.addAttribute("ShowRoomReservations", false);
             model.addAttribute("showCars", false);
             model.addAttribute("showTableReservations", false);
+            model.addAttribute("showBarReservations", false);
+            model.addAttribute("showCarReservations", false);
 
             return "admin-dashboard";
         }
@@ -82,6 +88,8 @@ public class AdminDashboardController {
             model.addAttribute("ShowRoomReservations", false);
             model.addAttribute("showCars", false);
             model.addAttribute("showTableReservations", false);
+            model.addAttribute("showBarReservations", false);
+            model.addAttribute("showCarReservations", false);
 
             return "admin-dashboard";
         }
@@ -104,6 +112,8 @@ public class AdminDashboardController {
             model.addAttribute("ShowRoomReservations", false);
             model.addAttribute("showCars", false);
             model.addAttribute("showTableReservations", false);
+            model.addAttribute("showBarReservations", false);
+            model.addAttribute("showCarReservations", false);
 
             return "admin-dashboard";
         }
@@ -125,6 +135,8 @@ public class AdminDashboardController {
             model.addAttribute("ShowRoomReservations", false);
             model.addAttribute("showCars", false);
             model.addAttribute("showTableReservations", false);
+            model.addAttribute("showBarReservations", false);
+            model.addAttribute("showCarReservations", false);
 
             return "admin-dashboard";
         }
@@ -147,6 +159,8 @@ public class AdminDashboardController {
             model.addAttribute("ShowRoomReservations", false);
             model.addAttribute("showCars", false);
             model.addAttribute("showTableReservations", false);
+            model.addAttribute("showBarReservations", false);
+            model.addAttribute("showCarReservations", false);
 
             return "admin-dashboard";
         }
@@ -169,6 +183,8 @@ public class AdminDashboardController {
             model.addAttribute("ShowRoomReservations", false);
             model.addAttribute("showCars", false);
             model.addAttribute("showTableReservations", false);
+            model.addAttribute("showBarReservations", false);
+            model.addAttribute("showCarReservations", false);
 
             return "admin-dashboard";
         }
@@ -206,6 +222,8 @@ public class AdminDashboardController {
             model.addAttribute("showRooms", false);
             model.addAttribute("showCars", false);
             model.addAttribute("showTableReservations", false);
+            model.addAttribute("showBarReservations", false);
+            model.addAttribute("showCarReservations", false);
 
             return "admin-dashboard";
         }
@@ -227,6 +245,8 @@ public class AdminDashboardController {
             model.addAttribute("showUsers", false);
             model.addAttribute("showRooms", false);
             model.addAttribute("showTableReservations", false);
+            model.addAttribute("showBarReservations", false);
+            model.addAttribute("showCarReservations", false);
 
             return "admin-dashboard";
         }
@@ -256,6 +276,84 @@ public class AdminDashboardController {
 
             model.addAttribute("tableReservationsFragment", fragmentGenerator.generateTableReservationListFragment(tableReservations));
             model.addAttribute("showTableReservations", true);
+            model.addAttribute("showRoomReservations", false);
+            model.addAttribute("showSeats", false);
+            model.addAttribute("showTables", false);
+            model.addAttribute("showDashboard", false);
+            model.addAttribute("showUsers", false);
+            model.addAttribute("showRooms", false);
+            model.addAttribute("showCars", false);
+            model.addAttribute("showBarReservations", false);
+            model.addAttribute("showCarReservations", false);
+
+            return "admin-dashboard";
+        }
+        return "redirect:/api/v1/demo";
+    }
+
+    @GetMapping("/barReservations")
+    public String showBarReservations (@RequestParam(name = "userSearch", required = false) Integer userSearch,
+                                         @RequestParam(name = "seatSearch", required = false) Integer seatSearch,
+                                         @RequestParam(name = "dateSearch", required = false) LocalDate dateSearch,
+                                         Model model, HttpServletRequest httpServletRequest) {
+
+        String responseData = htmlAuthorizeData.authorizeData(httpServletRequest);
+        List<BarReservationResponse> barReservations;
+
+        if (responseData != null) {
+
+            if (userSearch != null) {
+                barReservations = barReservationService.searchByUser(userSearch);
+            } else if (seatSearch != null) {
+                barReservations = barReservationService.searchBySeat(seatSearch);
+            } else if (dateSearch != null) {
+                barReservations = barReservationService.searchByDate(dateSearch);
+            } else {
+                barReservations = barReservationService.getAllBarReservations();
+            }
+
+            model.addAttribute("barReservationsFragment", fragmentGenerator.generateBarReservationListFragment(barReservations));
+            model.addAttribute("showBarReservations", true);
+            model.addAttribute("showTableReservations", false);
+            model.addAttribute("showRoomReservations", false);
+            model.addAttribute("showSeats", false);
+            model.addAttribute("showTables", false);
+            model.addAttribute("showDashboard", false);
+            model.addAttribute("showUsers", false);
+            model.addAttribute("showRooms", false);
+            model.addAttribute("showCars", false);
+            model.addAttribute("showCarReservations", false);
+
+            return "admin-dashboard";
+        }
+        return "redirect:/api/v1/demo";
+    }
+
+    @GetMapping("/carReservations")
+    public String showCarReservations (@RequestParam(name = "userSearch", required = false) Integer userSearch,
+                                       @RequestParam(name = "carSearch", required = false) Integer carSearch,
+                                       @RequestParam(name = "dateSearch", required = false) LocalDate dateSearch,
+                                       Model model, HttpServletRequest httpServletRequest) {
+
+        String responseData = htmlAuthorizeData.authorizeData(httpServletRequest);
+        List<CarReservationResponse> carReservations;
+
+        if (responseData != null) {
+
+            if (userSearch != null) {
+                carReservations = carReservationService.searchByUser(userSearch);
+            } else if (carSearch != null) {
+                carReservations = carReservationService.searchByCar(carSearch);
+            } else if (dateSearch != null) {
+                carReservations = carReservationService.searchByDate(dateSearch);
+            } else {
+                carReservations = carReservationService.getAllCarReservations();
+            }
+
+            model.addAttribute("carReservationsFragment", fragmentGenerator.generateCarReservationListFragment(carReservations));
+            model.addAttribute("showCarReservations", true);
+            model.addAttribute("showBarReservations", false);
+            model.addAttribute("showTableReservations", false);
             model.addAttribute("showRoomReservations", false);
             model.addAttribute("showSeats", false);
             model.addAttribute("showTables", false);

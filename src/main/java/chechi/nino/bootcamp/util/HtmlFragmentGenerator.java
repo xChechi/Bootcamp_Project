@@ -2,6 +2,8 @@ package chechi.nino.bootcamp.util;
 
 import chechi.nino.bootcamp.dto.bar.BarSeatResponse;
 import chechi.nino.bootcamp.dto.car.CarResponse;
+import chechi.nino.bootcamp.dto.reservation_bar.BarReservationResponse;
+import chechi.nino.bootcamp.dto.reservation_car.CarReservationResponse;
 import chechi.nino.bootcamp.dto.reservation_room.RoomReservationResponse;
 import chechi.nino.bootcamp.dto.reservation_table.TableReservationResponse;
 import chechi.nino.bootcamp.dto.room.RoomResponse;
@@ -11,8 +13,10 @@ import chechi.nino.bootcamp.entity.car.Image;
 import chechi.nino.bootcamp.entity.room.FacilityType;
 import org.springframework.stereotype.Component;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class HtmlFragmentGenerator {
@@ -236,6 +240,98 @@ public class HtmlFragmentGenerator {
             fragment.append("<td class='text-center'>").append(reservation.getTableZone()).append("</td>");
             fragment.append("<td class='text-center'>").append(reservation.getTableZone().isSmoke() ? "Yes" : "No").append("</td>");
             fragment.append("<td class='text-center'>").append(reservation.getTableZone().getTableCapacity()).append("</td>");
+            fragment.append("</tr>");
+        }
+
+        fragment.append("</tbody></table>");
+        return fragment.toString();
+    }
+
+    public String generateBarReservationListFragment (List<BarReservationResponse> reservations) {
+        StringBuilder fragment = new StringBuilder();
+        fragment.append("<h4 class='bg-primary text-white p-2'>Bar Reservations List</h4>");
+
+        fragment.append("<form th:action='@{/api/v1/admin-dashboard/roomReservations}' method='get' class='mb-4'>");
+        fragment.append("<div class='row'>");
+        fragment.append("<div class='col-md-4'>");
+        fragment.append("<label for='userSearch' class='form-label'>Search by User:</label>");
+        fragment.append("<input type='text' id='userSearch' name='userSearch' class='form-control' placeholder='Enter User ID'>");
+        fragment.append("</div>");
+        fragment.append("<div class='col-md-4'>");
+        fragment.append("<label for='seatSearch' class='form-label'>Search by Seat:</label>");
+        fragment.append("<input type='text' id='seatSearch' name='seatSearch' class='form-control' placeholder='Enter Seat ID'>");
+        fragment.append("</div>");
+        fragment.append("<div class='col-md-4'>");
+        fragment.append("<label for='dateSearch' class='form-label'>Search by Date:</label>");
+        fragment.append("<input type='date' id='dateSearch' name='dateSearch' class='form-control'>");
+        fragment.append("</div>");
+        fragment.append("<div class='col-md-1'>");
+        fragment.append("<button type='submit' class='btn btn-primary mt-4'>Search</button>");
+        fragment.append("</div>");
+        fragment.append("</div>");
+        fragment.append("</form>");
+
+        fragment.append("<table class='table table-bordered'>");
+        fragment.append("<thead class='bg-primary text-center text-white'><tr><th>ID</th><th>Client</th><th>Seats</th><th>Event Time</th><th>Event Name</th><th>Number of Guests</th><th>Total Charge</th></tr></thead>");
+        fragment.append("<tbody>");
+
+        for (BarReservationResponse reservation : reservations) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            String formattedEventTime = reservation.getEventTime().format(formatter);
+
+            fragment.append("<tr class='table-row-hover'>");
+            fragment.append("<td class='text-center'>").append(reservation.getId()).append("</td>");
+            fragment.append("<td class='text-center'>").append(reservation.getUser().getFirstName()).append(" ").append(reservation.getUser().getLastName()).append("</td>");
+            fragment.append("<td class='text-center'>").append(reservation.getSeats().stream().map(BarSeatResponse::getSeatNumber).map(String::valueOf).collect(Collectors.joining(", "))).append("</td>");
+            fragment.append("<td class='text-center'>").append(formattedEventTime).append("</td>");
+            fragment.append("<td class='text-center'>").append(reservation.getEvent().getEventName()).append("</td>");
+            fragment.append("<td class='text-center'>").append(reservation.getGuests()).append("</td>");
+            fragment.append("<td class='text-center'>").append(reservation.getTotalCharge()).append("</td>");
+            fragment.append("</tr>");
+        }
+
+        fragment.append("</tbody></table>");
+        return fragment.toString();
+    }
+
+    public String generateCarReservationListFragment (List<CarReservationResponse> reservations) {
+        StringBuilder fragment = new StringBuilder();
+        fragment.append("<h4 class='bg-primary text-white p-2'>Car Reservations List</h4>");
+
+        fragment.append("<form th:action='@{/api/v1/admin-dashboard/roomReservations}' method='get' class='mb-4'>");
+        fragment.append("<div class='row'>");
+        fragment.append("<div class='col-md-4'>");
+        fragment.append("<label for='userSearch' class='form-label'>Search by User:</label>");
+        fragment.append("<input type='text' id='userSearch' name='userSearch' class='form-control' placeholder='Enter User ID'>");
+        fragment.append("</div>");
+        fragment.append("<div class='col-md-4'>");
+        fragment.append("<label for='carSearch' class='form-label'>Search by Car:</label>");
+        fragment.append("<input type='text' id='carSearch' name='carSearch' class='form-control' placeholder='Enter Car ID'>");
+        fragment.append("</div>");
+        fragment.append("<div class='col-md-4'>");
+        fragment.append("<label for='dateSearch' class='form-label'>Search by Date:</label>");
+        fragment.append("<input type='date' id='dateSearch' name='dateSearch' class='form-control'>");
+        fragment.append("</div>");
+        fragment.append("<div class='col-md-1'>");
+        fragment.append("<button type='submit' class='btn btn-primary mt-4'>Search</button>");
+        fragment.append("</div>");
+        fragment.append("</div>");
+        fragment.append("</form>");
+
+        fragment.append("<table class='table table-bordered'>");
+        fragment.append("<thead class='bg-primary text-center text-white'><tr><th>ID</th><th>Client</th><th>Date</th><th>Car</th><th>Car Type</th><th>Available Seats</th><th>Number of Passengers</th><th>Total Charge</th></tr></thead>");
+        fragment.append("<tbody>");
+
+        for (CarReservationResponse reservation : reservations) {
+            fragment.append("<tr class='table-row-hover'>");
+            fragment.append("<td class='text-center'>").append(reservation.getId()).append("</td>");
+            fragment.append("<td class='text-center'>").append(reservation.getUser().getFirstName()).append(" ").append(reservation.getUser().getLastName()).append("</td>");
+            fragment.append("<td class='text-center'>").append(reservation.getReservationDate()).append("</td>");
+            fragment.append("<td class='text-center'>").append(reservation.getCar().getModel()).append("</td>");
+            fragment.append("<td class='text-center'>").append(reservation.getCar().getCarType()).append("</td>");
+            fragment.append("<td class='text-center'>").append(reservation.getCar().getSeats()).append("</td>");
+            fragment.append("<td class='text-center'>").append(reservation.getPassengers()).append("</td>");
+            fragment.append("<td class='text-center'>").append(reservation.getDailyCharge()).append("</td>");
             fragment.append("</tr>");
         }
 
