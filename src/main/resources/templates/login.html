@@ -49,15 +49,23 @@
                     <div class="card-body">
                         <form th:action="@{/api/v1/login}" method="post" th:object="${loginRequest}">
 
+
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" th:field="*{email}" required>
+                                <div th:if="${#fields.hasErrors('email')}" style="color: red;">
+                                    <p th:errors="*{email}"></p>
+                                </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control" id="password" th:field="*{password}" required>
+                                <div th:if="${#fields.hasErrors('password')}" style="color: red;">
+                                    <p th:errors="*{password}"></p>
+                                </div>
                             </div>
+
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Login</button>
                             </div>
@@ -65,9 +73,9 @@
                                 <p>Forgotten password? <a th:href="@{/api/v1/forgotten-password}">Click here</a></p>
                             </div>
 
-                            <!-- Display a login error message if one exists -->
-                            <div th:if="${loginError}" class="error-message">
-                                <p th:text="${loginError}">User not found</p>
+                            <div th:if="${data}">
+                                <h1>Access denied</h1>
+                                <p>Your account do not have required role to access this endpoint.</p>
                             </div>
 
                         </form>

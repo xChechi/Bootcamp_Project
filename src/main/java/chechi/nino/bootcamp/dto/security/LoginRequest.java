@@ -16,7 +16,7 @@ public class LoginRequest {
     @Email
     private String email;
 
-    @PasswordValidation
+    //@PasswordValidation
     String password;
 
 }

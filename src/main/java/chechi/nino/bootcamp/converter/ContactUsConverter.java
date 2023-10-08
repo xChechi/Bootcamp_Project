@@ -1,6 +1,7 @@
 package chechi.nino.bootcamp.converter;
 
 import chechi.nino.bootcamp.dto.contact.ContactUsRequest;
+import chechi.nino.bootcamp.dto.contact.ContactUsResponse;
 import chechi.nino.bootcamp.entity.contact.ContactUsForm;
 import chechi.nino.bootcamp.entity.user.User;
 import chechi.nino.bootcamp.exception.UserNotFoundException;
@@ -21,5 +22,9 @@ public class ContactUsConverter {
                 .phoneNumber(request.getPhoneNumber())
                 .message(request.getMessage())
                 .build();
+    }
+
+    public ContactUsResponse toContactUsResponse (ContactUsForm form) {
+        return new ContactUsResponse(form.getId(), form.getFirstName(), form.getLastName(), form.getEmail(), form.getPhoneNumber(), form.getMessage());
     }
 }

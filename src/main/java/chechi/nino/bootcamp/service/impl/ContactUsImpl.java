@@ -2,6 +2,7 @@ package chechi.nino.bootcamp.service.impl;
 
 import chechi.nino.bootcamp.converter.ContactUsConverter;
 import chechi.nino.bootcamp.dto.contact.ContactUsRequest;
+import chechi.nino.bootcamp.dto.contact.ContactUsResponse;
 import chechi.nino.bootcamp.entity.contact.ContactUsForm;
 import chechi.nino.bootcamp.repository.ContactUsRepository;
 import chechi.nino.bootcamp.service.ContactUsService;
@@ -24,7 +25,11 @@ public class ContactUsImpl implements ContactUsService {
     }
 
     @Override
-    public List<ContactUsForm> getAllMessages() {
-        return contactUsRepository.findAll();
+    public List<ContactUsResponse> getAllMessages() {
+
+        List<ContactUsForm> list = contactUsRepository.findAll();
+        return list.stream()
+                .map(contactUsConverter::toContactUsResponse)
+                .toList();
     }
 }

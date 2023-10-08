@@ -95,7 +95,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/tablesReservations}">
+                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/tableReservations}">
                         <span class="menu-title">Restaurant Reservations</span>
                         <i class="bi bi-calendar menu-icon"></i>
                     </a>
@@ -119,7 +119,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/clients}">
+                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/requests}">
                         <span class="menu-title">Client Requests</span>
                         <i class="bi bi-file-earmark-text menu-icon"></i>
                     </a>
@@ -164,9 +164,29 @@
             <div th:if="${showRoomReservations}">
                 <div th:utext="${roomReservationsFragment}"></div>
             </div>
+            <!-- Table Reservations Content -->
+            <div th:if="${showTableReservations}">
+                <div th:utext="${tableReservationsFragment}"></div>
+            </div>
+            <!-- Bar Reservations Content -->
+            <div th:if="${showBarReservations}">
+                <div th:utext="${barReservationsFragment}"></div>
+            </div>
+            <!-- Car Reservations Content -->
+            <div th:if="${showCarReservations}">
+                <div th:utext="${carReservationsFragment}"></div>
+            </div>
             <!-- Cars Content -->
             <div th:if="${showCars}">
                 <div th:utext="${carsFragment}"></div>
+            </div>
+            <!-- Event Content -->
+            <div th:if="${showEvents}">
+                <div th:utext="${eventsFragment}"></div>
+            </div>
+            <!-- Client Requests Content -->
+            <div th:if="${showRequests}">
+                <div th:utext="${requestsFragment}"></div>
             </div>
         </main>
 
