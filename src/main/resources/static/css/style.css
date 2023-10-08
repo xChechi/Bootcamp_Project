@@ -737,9 +737,33 @@
     padding: 1rem 10px;
 }
 
+.message-card {
+    margin-right: 10px;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,0.125);
 
+}
 
+.message-img {
+    width: 70%;
+}
 
+.message-label {
+    font-size: 18px; /* Adjust the font size as needed */
+    font-weight: bold;
+    margin-left: 15px; /* Add space between label and text */
+}
 
-
-
+.message-card:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}

@@ -2,6 +2,8 @@ package chechi.nino.bootcamp.util;
 
 import chechi.nino.bootcamp.dto.bar.BarSeatResponse;
 import chechi.nino.bootcamp.dto.car.CarResponse;
+import chechi.nino.bootcamp.dto.contact.ContactUsResponse;
+import chechi.nino.bootcamp.dto.event.ScreenEventResponse;
 import chechi.nino.bootcamp.dto.reservation_bar.BarReservationResponse;
 import chechi.nino.bootcamp.dto.reservation_car.CarReservationResponse;
 import chechi.nino.bootcamp.dto.reservation_room.RoomReservationResponse;
@@ -112,7 +114,7 @@ public class HtmlFragmentGenerator {
             fragment.append("<tr class='table-row-hover'>");
             fragment.append("<td class='text-center'>").append(seat.getId()).append("</td>");
             fragment.append("<td class='text-center'>").append(seat.getSeatNumber()).append("</td>");
-            fragment.append("<td class='text-center'>").append(seat.getZoneType()).append("</td>");
+            fragment.append("<td class='text-center'>").append(seat.getZoneType().getDisplayName()).append("</td>");
             fragment.append("</tr>");
         }
 
@@ -338,6 +340,72 @@ public class HtmlFragmentGenerator {
         fragment.append("</tbody></table>");
         return fragment.toString();
     }
+
+    public String generateEventListFragment (List<ScreenEventResponse> events) {
+        StringBuilder fragment = new StringBuilder();
+        fragment.append("<h4 class='bg-primary text-white p-2'>Events List</h4>");
+        fragment.append("<table class='table table-bordered'>");
+        fragment.append("<thead class='bg-primary text-center text-white'><tr><th>Event ID</th><th>Name</th><th>Time</th><th>Zone</th></tr></thead>");
+        fragment.append("<tbody>");
+
+        for (ScreenEventResponse event : events) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            String formattedEventTime = event.getEventTime().format(formatter);
+
+            fragment.append("<tr class='table-row-hover'>");
+            fragment.append("<td class='text-center'>").append(event.getId()).append("</td>");
+            fragment.append("<td class='text-center'>").append(event.getEventName()).append("</td>");
+            fragment.append("<td class='text-center'>").append(formattedEventTime).append("</td>");
+            fragment.append("<td class='text-center'>").append(event.getZoneType().getDisplayName()).append("</td>");
+            fragment.append("</tr>");
+        }
+
+        fragment.append("</tbody></table>");
+        return fragment.toString();
+    }
+
+    public String generateRequestsListFragment(List<ContactUsResponse> messages) {
+        StringBuilder fragment = new StringBuilder();
+        fragment.append("<h4 class='bg-primary text-white p-2'>Clients Message List</h4>");
+        fragment.append("<div class='row g-0'>");
+
+        for (ContactUsResponse message : messages) {
+            fragment.append("<div class='col-md-4 mt-2'>");
+            fragment.append("<div class='message-card message-card-hover h-100'>");
+
+            // Top Div (Image and Name, Phone, Email)
+            fragment.append("<div class='row g-0'>");
+
+            // Left Div (Silhouette Avatar)
+            fragment.append("<div class='col-md-4 d-flex flex-column align-items-center'>");
+            fragment.append("<img src='/img/silluette.png' class='message-img' alt='Avatar'>");
+            fragment.append("</div>");
+
+            // Right Div (Name, Phone, Email)
+            fragment.append("<div class='col-md-8'>");
+            fragment.append("<div class='card-body'>");
+            fragment.append("<h5 class='card-title'>").append(message.getFirstName()).append(" ").append(message.getLastName()).append("</h5>");
+            fragment.append("<p class='card-text'>Phone: ").append(message.getPhoneNumber()).append("</p>");
+            fragment.append("<p class='card-text'>Email: ").append(message.getEmail()).append("</p>");
+            fragment.append("</div>");
+            fragment.append("</div>");
+
+            fragment.append("</div>");
+
+            // Bottom Div (Message)
+            fragment.append("<div class='message-label mt-3'>Message</div>");
+            fragment.append("<div class='card-body'>");
+            fragment.append("<p class='card-text'>").append(message.getMessage()).append("</p>");
+            fragment.append("</div>");
+
+            fragment.append("</div>");
+            fragment.append("</div>");
+        }
+        fragment.append("</div>");
+        return fragment.toString();
+    }
+
+
 
 
 }

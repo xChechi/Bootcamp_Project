@@ -1,6 +1,7 @@
 package chechi.nino.bootcamp.controller.api;
 
 import chechi.nino.bootcamp.dto.contact.ContactUsRequest;
+import chechi.nino.bootcamp.dto.contact.ContactUsResponse;
 import chechi.nino.bootcamp.entity.contact.ContactUsForm;
 import chechi.nino.bootcamp.service.ContactUsService;
 import jakarta.validation.Valid;
@@ -19,9 +20,9 @@ public class ContactUsController {
     private final ContactUsService contactUsService;
 
     @GetMapping
-    public ResponseEntity<List<ContactUsForm>> viewAllMessages () {
+    public ResponseEntity<List<ContactUsResponse>> viewAllMessages () {
 
-        List<ContactUsForm> messages = contactUsService.getAllMessages();
+        List<ContactUsResponse> messages = contactUsService.getAllMessages();
         return ResponseEntity.status(HttpStatus.FOUND).body(messages);
     }
 

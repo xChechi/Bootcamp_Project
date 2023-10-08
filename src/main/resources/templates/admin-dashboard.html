@@ -119,7 +119,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/clients}">
+                    <a class="nav-link" href="#" th:href="@{/api/v1/admin-dashboard/requests}">
                         <span class="menu-title">Client Requests</span>
                         <i class="bi bi-file-earmark-text menu-icon"></i>
                     </a>
@@ -179,6 +179,14 @@
             <!-- Cars Content -->
             <div th:if="${showCars}">
                 <div th:utext="${carsFragment}"></div>
+            </div>
+            <!-- Event Content -->
+            <div th:if="${showEvents}">
+                <div th:utext="${eventsFragment}"></div>
+            </div>
+            <!-- Client Requests Content -->
+            <div th:if="${showRequests}">
+                <div th:utext="${requestsFragment}"></div>
             </div>
         </main>
 

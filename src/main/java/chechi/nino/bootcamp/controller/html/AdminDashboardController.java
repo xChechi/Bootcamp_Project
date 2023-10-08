@@ -3,6 +3,8 @@ package chechi.nino.bootcamp.controller.html;
 import chechi.nino.bootcamp.config.ApiUrlProviderConfig;
 import chechi.nino.bootcamp.dto.bar.BarSeatResponse;
 import chechi.nino.bootcamp.dto.car.CarResponse;
+import chechi.nino.bootcamp.dto.contact.ContactUsResponse;
+import chechi.nino.bootcamp.dto.event.ScreenEventResponse;
 import chechi.nino.bootcamp.dto.reservation_bar.BarReservationResponse;
 import chechi.nino.bootcamp.dto.reservation_car.CarReservationResponse;
 import chechi.nino.bootcamp.dto.reservation_room.RoomReservationResponse;
@@ -46,6 +48,8 @@ public class AdminDashboardController {
     private final TableReservationService tableReservationService;
     private final BarReservationService barReservationService;
     private final CarReservationService carReservationService;
+    private final ScreenEventService screenEventService;
+    private final ContactUsService contactUsService;
 
     @GetMapping
     public String adminDashboard (Model model, HttpServletRequest httpServletRequest) {
@@ -66,6 +70,8 @@ public class AdminDashboardController {
             model.addAttribute("showTableReservations", false);
             model.addAttribute("showBarReservations", false);
             model.addAttribute("showCarReservations", false);
+            model.addAttribute("showEvents", false);
+            model.addAttribute("showRequests", false);
 
             return "admin-dashboard";
         }
@@ -90,6 +96,8 @@ public class AdminDashboardController {
             model.addAttribute("showTableReservations", false);
             model.addAttribute("showBarReservations", false);
             model.addAttribute("showCarReservations", false);
+            model.addAttribute("showEvents", false);
+            model.addAttribute("showRequests", false);
 
             return "admin-dashboard";
         }
@@ -114,6 +122,8 @@ public class AdminDashboardController {
             model.addAttribute("showTableReservations", false);
             model.addAttribute("showBarReservations", false);
             model.addAttribute("showCarReservations", false);
+            model.addAttribute("showEvents", false);
+            model.addAttribute("showRequests", false);
 
             return "admin-dashboard";
         }
@@ -137,6 +147,8 @@ public class AdminDashboardController {
             model.addAttribute("showTableReservations", false);
             model.addAttribute("showBarReservations", false);
             model.addAttribute("showCarReservations", false);
+            model.addAttribute("showEvents", false);
+            model.addAttribute("showRequests", false);
 
             return "admin-dashboard";
         }
@@ -161,6 +173,8 @@ public class AdminDashboardController {
             model.addAttribute("showTableReservations", false);
             model.addAttribute("showBarReservations", false);
             model.addAttribute("showCarReservations", false);
+            model.addAttribute("showEvents", false);
+            model.addAttribute("showRequests", false);
 
             return "admin-dashboard";
         }
@@ -185,6 +199,8 @@ public class AdminDashboardController {
             model.addAttribute("showTableReservations", false);
             model.addAttribute("showBarReservations", false);
             model.addAttribute("showCarReservations", false);
+            model.addAttribute("showEvents", false);
+            model.addAttribute("showRequests", false);
 
             return "admin-dashboard";
         }
@@ -224,6 +240,8 @@ public class AdminDashboardController {
             model.addAttribute("showTableReservations", false);
             model.addAttribute("showBarReservations", false);
             model.addAttribute("showCarReservations", false);
+            model.addAttribute("showEvents", false);
+            model.addAttribute("showRequests", false);
 
             return "admin-dashboard";
         }
@@ -247,6 +265,8 @@ public class AdminDashboardController {
             model.addAttribute("showTableReservations", false);
             model.addAttribute("showBarReservations", false);
             model.addAttribute("showCarReservations", false);
+            model.addAttribute("showEvents", false);
+            model.addAttribute("showRequests", false);
 
             return "admin-dashboard";
         }
@@ -285,6 +305,8 @@ public class AdminDashboardController {
             model.addAttribute("showCars", false);
             model.addAttribute("showBarReservations", false);
             model.addAttribute("showCarReservations", false);
+            model.addAttribute("showEvents", false);
+            model.addAttribute("showRequests", false);
 
             return "admin-dashboard";
         }
@@ -323,6 +345,8 @@ public class AdminDashboardController {
             model.addAttribute("showRooms", false);
             model.addAttribute("showCars", false);
             model.addAttribute("showCarReservations", false);
+            model.addAttribute("showEvents", false);
+            model.addAttribute("showRequests", false);
 
             return "admin-dashboard";
         }
@@ -352,6 +376,57 @@ public class AdminDashboardController {
 
             model.addAttribute("carReservationsFragment", fragmentGenerator.generateCarReservationListFragment(carReservations));
             model.addAttribute("showCarReservations", true);
+            model.addAttribute("showBarReservations", false);
+            model.addAttribute("showTableReservations", false);
+            model.addAttribute("showRoomReservations", false);
+            model.addAttribute("showSeats", false);
+            model.addAttribute("showTables", false);
+            model.addAttribute("showDashboard", false);
+            model.addAttribute("showUsers", false);
+            model.addAttribute("showRooms", false);
+            model.addAttribute("showCars", false);
+            model.addAttribute("showEvents", false);
+            model.addAttribute("showRequests", false);
+
+            return "admin-dashboard";
+        }
+        return "redirect:/api/v1/demo";
+    }
+
+    @GetMapping("/events")
+    public String showEvents (Model model, HttpServletRequest httpServletRequest) {
+
+        String responseData = htmlAuthorizeData.authorizeData(httpServletRequest);
+        if (responseData != null) {
+            List<ScreenEventResponse> events = screenEventService.getAllEvents();
+            model.addAttribute("eventsFragment", fragmentGenerator.generateEventListFragment(events));
+            model.addAttribute("showEvents", true);
+            model.addAttribute("showCarReservations", false);
+            model.addAttribute("showBarReservations", false);
+            model.addAttribute("showTableReservations", false);
+            model.addAttribute("showRoomReservations", false);
+            model.addAttribute("showSeats", false);
+            model.addAttribute("showTables", false);
+            model.addAttribute("showDashboard", false);
+            model.addAttribute("showUsers", false);
+            model.addAttribute("showRooms", false);
+            model.addAttribute("showCars", false);
+            model.addAttribute("showRequests", false);
+
+            return "admin-dashboard";
+        }
+        return "redirect:/api/v1/demo";
+    }
+
+    @GetMapping("/requests")
+    public String showRequests (Model model, HttpServletRequest httpServletRequest) {
+        String responseData = htmlAuthorizeData.authorizeData(httpServletRequest);
+        if (responseData != null) {
+            List<ContactUsResponse> messages = contactUsService.getAllMessages();
+            model.addAttribute("requestsFragment", fragmentGenerator.generateRequestsListFragment(messages));
+            model.addAttribute("showRequests", true);
+            model.addAttribute("showEvents", false);
+            model.addAttribute("showCarReservations", false);
             model.addAttribute("showBarReservations", false);
             model.addAttribute("showTableReservations", false);
             model.addAttribute("showRoomReservations", false);
