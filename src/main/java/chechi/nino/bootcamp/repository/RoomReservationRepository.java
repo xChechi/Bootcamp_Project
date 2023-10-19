@@ -18,7 +18,5 @@ public interface RoomReservationRepository extends JpaRepository<RoomReservation
     List<RoomReservationResponse> searchByRoom (Integer roomId);
 
     @Query("SELECT r FROM RoomReservation r WHERE r.startDate <= :endDate AND r.endDate >= :startDate")
-    //@Query("SELECT r FROM RoomReservation r WHERE r.startDate >= :startDate AND r.endDate <= :endDate")
-    //List<RoomReservationResponse> findReservationsWithinPeriod (LocalDate startDate, LocalDate endDate);
     List<RoomReservation> findReservationsWithinPeriod(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 }

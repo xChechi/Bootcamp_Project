@@ -54,7 +54,6 @@ public class RoomReservationServiceImpl implements RoomReservationService {
     public RoomReservationResponse bookReservation(Integer userId, RoomReservationRequest request) {
 
         RoomReservation roomReservation = roomReservationConverter.bookReservation(userId, request);
-        RoomReservation savedReservation = roomReservationRepository.save(roomReservation);
 
         int guests = roomReservation.getGuests();
         int capacity = roomReservation.getRoom().getRoomType().getRoomCapacity();
@@ -63,8 +62,17 @@ public class RoomReservationServiceImpl implements RoomReservationService {
             throw new IllegalArgumentException("Number of guests exceeds room capacity");
         }
 
-        return roomReservationConverter.toRoomReservationResponse(savedReservation);
+        List<RoomReservation> reservationsWithinPeriod = roomReservationRepository.findReservationsWithinPeriod(roomReservation.getStartDate(),
+                                                                                                                roomReservation.getEndDate());
+        boolean isRoomReserved = reservationsWithinPeriod.stream()
+                .anyMatch(res -> res.getRoom().getId().equals(roomReservation.getRoom().getId()));
 
+        if(isRoomReserved) {
+            throw new IllegalArgumentException("The room is already reserved for selected period");
+        }
+
+        RoomReservation savedReservation = roomReservationRepository.save(roomReservation);
+        return roomReservationConverter.toRoomReservationResponse(savedReservation);
     }
 
     @Override
