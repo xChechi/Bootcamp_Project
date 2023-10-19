@@ -9,6 +9,8 @@ Hotel reservation management system
 
 ![image](https://github.com/xChechi/Bootcamp_Project/assets/38115060/b7c082c4-722e-43e3-b7ad-b3c5ebcc2c54)
 
+![image](https://github.com/xChechi/Bootcamp_Project/assets/38115060/2793a353-4739-4af3-8108-53fe75a7ba71)
+
 ![image](https://github.com/xChechi/Bootcamp_Project/assets/38115060/baab01f9-76b1-4778-881b-7121b2e0bae8)
 
 ![image](https://github.com/xChechi/Bootcamp_Project/assets/38115060/af772fc4-3d6f-42d8-8b87-86e7f62b5d32)
