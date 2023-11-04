@@ -85,6 +85,7 @@ public class TableReservationConverter {
                 .tableZone(tableReservation.getTableZone())
                 .isSmoke(tableReservation.isSmoke())
                 .guests(tableReservation.getGuests())
+                .totalCharge(tableReservation.getTotalCharge())
                 .build();
     }
 

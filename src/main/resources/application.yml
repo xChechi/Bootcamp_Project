@@ -6,7 +6,9 @@ spring:
     level:
       org.springframework: DEBUG
   config:
-    import: classpath:email-credentials.yml
+    import:
+      - classpath:email-credentials.yml
+      - classpath:paypal-credentials.yml
   mail:
     host: smtp.abv.bg
     port: 465
