@@ -9,8 +9,12 @@ import com.paypal.base.rest.PayPalRESTException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class PayPalService {
@@ -24,9 +28,12 @@ public class PayPalService {
     public Payment createPayment(double total, String currency, String method, String cancelUrl, String successUrl) throws PayPalRESTException {
         APIContext apiContext = new APIContext(clientId, clientSecret, "sandbox");
 
+        String formattedTotal = String.format(Locale.US, "%.2f", total);
+
         Amount amount = new Amount();
         amount.setCurrency(currency);
-        amount.setTotal(String.format("%.2f", total));
+        amount.setTotal(formattedTotal);
+        System.out.println("Amount is " + amount);
 
         Transaction transaction = new Transaction();
         transaction.setAmount(amount);
@@ -51,7 +58,7 @@ public class PayPalService {
 
     public static double getTotalAmount(Object reservation) {
 
-        double totalAmount;
+        double totalAmount = 0.00;
 
         if (reservation instanceof BarReservationResponse) {
             totalAmount = ((BarReservationResponse) reservation).getTotalCharge();

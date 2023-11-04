@@ -39,16 +39,17 @@ public class PayPalController {
 
     @Secured("USER")
     @PostMapping("/payment")
-    public ResponseEntity<?> makePayment (@RequestParam("reservationId") Integer reservationId,
+    public String makePayment (@RequestParam("reservationId") Integer reservationId,
                                                @RequestParam("entityType") String entityType,
                                                @RequestParam("cancelUrl") String cancelUrl,
                                                @RequestParam("successUrl") String successUrl) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName(); //Implement payer name in paypal service later
+        System.out.println("Client username is " + username);
 
         if (authentication.getAuthorities().stream().noneMatch(role -> role.getAuthority().equals("USER"))) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Unauthorized: User does not have the required role to make a payment.");
+            //return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Unauthorized: User does not have the required role to make a payment.");
         }
 
         try {
@@ -65,18 +66,19 @@ public class PayPalController {
             }
 
             if (reservation == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ReservationNotFoundException("Reservation not found"));
+                //return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ReservationNotFoundException("Reservation not found"));
             }
 
             double totalAmount = getTotalAmount(reservation);
+            System.out.println("Total amount in controller " + totalAmount);
 
-            Payment payment = payPalService.createPayment(totalAmount, "USD", "paypal", cancelUrl, successUrl);
-            //return payment.getLinks().get(1).getHref();
-            return ResponseEntity.status(HttpStatus.CREATED).body(payment);
+            Payment payment = payPalService.createPayment(totalAmount, "USD", "PAYPAL", cancelUrl, successUrl);
+            return payment.getLinks().get(1).getHref();
+            //return ResponseEntity.status(HttpStatus.CREATED).body(payment);
         } catch (PayPalRESTException e) {
-            //e.printStackTrace();
-            //return "redirect:/error";
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Payment failed" + e.getMessage());
+            e.printStackTrace();
+            return "redirect:/error";
+            //return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Payment failed" + e.getMessage());
         }
     }
 }
