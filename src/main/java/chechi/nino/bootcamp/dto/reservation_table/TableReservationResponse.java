@@ -36,4 +36,7 @@ public class TableReservationResponse {
 
     @NotNull
     private Integer guests;
+
+    @NotNull
+    private Double totalCharge;
 }
